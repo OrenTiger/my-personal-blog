@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyPersonalBlog.Models
 {
@@ -9,5 +10,12 @@ namespace MyPersonalBlog.Models
         [Required]
         [MaxLength(50, ErrorMessage = "Превышена максимальная длина (50 символов)")]
         public string Name { get; set; }
+
+        public virtual ICollection<Post> Posts { get; set; }
+
+        public Tag()
+        {
+            Posts = new List<Post>();
+        }
     }
 }
