@@ -7,7 +7,11 @@ namespace MyPersonalBlog.Models
     public class Post
     {
         public int Id { get; set; }
-        
+
+        [Required]
+        [MaxLength(140, ErrorMessage = "Превышена максимальная длина (140 символов)")]
+        public string Title { get; set; }
+
         [Required]
         [MaxLength(500, ErrorMessage = "Превышена максимальная длина (500 символов)")]
         public string IntroText { get; set; }
@@ -18,12 +22,13 @@ namespace MyPersonalBlog.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CreateDate { get; set; }
 
-        public bool Published { get; set; } = false;
+        public bool Published { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
         
         public Post()
         {
+            Published = false;
             Tags = new List<Tag>();
         }
     }
