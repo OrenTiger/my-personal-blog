@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Data.Entity;
-using MyPersonalBlog.Models;
+using MyPersonalBlog.Repositories;
 
 namespace MyPersonalBlog
 {
@@ -16,6 +16,7 @@ namespace MyPersonalBlog
             Database.SetInitializer(new BlogDbInitializer());
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //TODO: Добавить bundl'ы
         }
     }
 }

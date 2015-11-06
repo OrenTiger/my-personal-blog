@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using MyPersonalBlog.Models;
 
-namespace MyPersonalBlog.Models
+namespace MyPersonalBlog.Repositories
 {
     public class BlogDbInitializer : DropCreateDatabaseAlways<BlogContext>
     {
@@ -30,6 +31,10 @@ namespace MyPersonalBlog.Models
             db.Tags.Add(testTags[1]);
             db.Tags.Add(testTags[2]);
 
+            // TODO: Добавить функцию MD5-хэширования паролей
+            db.Admins.Add(new Admin { Login = "admin", Username = "Timur Basyrov", PasswordHash = "12345" });
+
+            db.SaveChanges();
             base.Seed(db);
         }
     }

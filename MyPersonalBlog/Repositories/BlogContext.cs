@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Data.Entity;
+using MyPersonalBlog.Models;
 
-namespace MyPersonalBlog.Models
+namespace MyPersonalBlog.Repositories
 {
     public class BlogContext : DbContext
     {
