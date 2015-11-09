@@ -21,7 +21,7 @@ namespace MyPersonalBlog
 
             routes.MapRoute(
                 name: "Manage",
-                url: "Manage/{controller}/{action}/{id}",
+                url: "Manage/Admin/{action}/{id}",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
 

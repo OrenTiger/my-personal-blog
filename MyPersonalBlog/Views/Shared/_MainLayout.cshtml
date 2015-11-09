@@ -11,19 +11,26 @@
     <script href="~/Scripts/jquery.validate.js"></script>
     <script href="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script href="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <title>Панель администратора</title>
+    <title>My personal blog</title>
 </head>
 <body>
     <div class="container">
-
+        
         <div class="jumbotron">
             <h2>My Personal Blog</h2>
-            <p>Admin panel (in developing...)</p>
-            @Html.ActionLink("Главная", "Index", "Home")
+            <p>in developing...</p>
+            @Html.ActionLink("Панель администратора", "SignIn", "Login")
         </div>
 
-        <div class="row col-md-12">
-            @RenderBody()
+        <div class="row">
+            <div class="col-md-9">
+                <p>Posts block</p>
+                @RenderBody()
+            </div>
+
+            <div class="col-md-3">
+                <p>Menu block</p>
+            </div>
         </div>
 
         <footer class="container-fluid text-center">
