@@ -11,16 +11,17 @@
     <div class="panel-body">
         <p class="lead">Введите учетные данные:</p>
         @using (Html.BeginForm())
-        {            
+        {
             @Html.ValidationSummary()
+
             <div class="row">
-                <div class="form-group col-xs-5 col-md-3 col-lg-2">
+                <div class="form-group col-sm-4">
                     <label>Логин:</label>
                     @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-xs-5 col-md-3 col-lg-2">
+                <div class="form-group col-sm-4">
                     <label>Пароль:</label>
                     @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
                 </div>

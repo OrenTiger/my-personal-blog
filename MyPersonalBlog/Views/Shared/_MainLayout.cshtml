@@ -1,21 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.Title = "My personal blog";
+}
+
+<!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <link href="~/Content/site.css" rel="stylesheet" />
-    <script href="~/Scripts/bootstrap.js"></script>
-    <script href="~/Scripts/jquery-1.9.1.js"></script>
-    <script href="~/Scripts/jquery.validate.js"></script>
-    <script href="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script href="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <title>My personal blog</title>
-</head>
+@Html.Partial("_HeadPartial")
 <body>
     <div class="container">
-        
         <div class="jumbotron">
             <h2>My Personal Blog</h2>
             <p>in developing...</p>
@@ -23,19 +15,20 @@
         </div>
 
         <div class="row">
-            <div class="col-md-9">
-                <p>Posts block</p>
-                @RenderBody()
-            </div>
+                <div class="col-sm-9">
+                    <p>Posts block</p>
+                    @RenderBody()
+                </div>
 
-            <div class="col-md-3">
-                <p>Menu block</p>
+                <div class="col-sm-3">
+                    <p>Menu block</p>
+                </div>
             </div>
-        </div>
 
         <footer class="container-fluid text-center">
             <p>footer block</p>
         </footer>
     </div>
+
 </body>
 </html>

@@ -17,6 +17,7 @@ namespace MyPersonalBlog
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //TODO: Добавить bundl'ы
+            //TODO: Скомпилить bootstrap с нужными частями на http://getbootstrap.com/customize/
         }
     }
 }

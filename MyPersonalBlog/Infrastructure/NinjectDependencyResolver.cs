@@ -31,6 +31,7 @@ namespace MyPersonalBlog.Infrastructure
         {
             _kernel.Bind<IAuthProvider>().To<FormAuthProvider>();
             _kernel.Bind<IAdminRepository>().To<AdminRepository>();
+            _kernel.Bind<IPostRepository>().To<PostRepository>();
         }
     }
 }

@@ -97,8 +97,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManagePostsTests.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="LoginTest.cs" />
+    <Compile Include="LoginTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

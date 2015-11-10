@@ -7,7 +7,7 @@ using MyPersonalBlog.Models;
 
 namespace MyPersonalBlog.Repositories
 {
-    public class BlogDbInitializer : DropCreateDatabaseAlways<BlogContext>
+    public class BlogDbInitializer : DropCreateDatabaseIfModelChanges<BlogContext>
     {
         protected override void Seed(BlogContext db)
         {

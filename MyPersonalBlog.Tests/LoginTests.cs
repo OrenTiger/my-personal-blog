@@ -11,7 +11,7 @@ using MyPersonalBlog.Infrastructure;
 namespace MyPersonalBlog.Tests
 {
     [TestClass]
-    public class LoginTest
+    public class LoginTests
     {
         [TestMethod]
         public void Can_Login_With_Valid_Credentials()
