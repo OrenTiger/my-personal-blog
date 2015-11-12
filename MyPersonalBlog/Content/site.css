@@ -23,3 +23,21 @@
 { 
     display: none; 
 }
+
+.comments
+{
+    padding-left: 20px;
+}
+
+.usericon
+{
+    font-size: 1.1em;
+    color: #777;
+    margin-right: 10px;
+}
+
+.username
+{
+    font-weight: bold; 
+    margin-right: 10px;
+}

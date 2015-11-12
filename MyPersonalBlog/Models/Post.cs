@@ -18,19 +18,22 @@ namespace MyPersonalBlog.Models
 
         [MaxLength(10000, ErrorMessage = "Превышена максимальная длина (10000 символов)")]
         public string MainText { get; set; }
-
+        
         [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreateDate { get; set; }
 
         public bool Published { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
         
         public Post()
         {
             Published = false;
             Tags = new List<Tag>();
+            Comments = new List<Comment>();
         }
     }
 }

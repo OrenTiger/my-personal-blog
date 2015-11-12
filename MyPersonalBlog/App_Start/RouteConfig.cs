@@ -14,6 +14,13 @@ namespace MyPersonalBlog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: null,
+                url: "{controller}/{id}",
+                defaults: new { controller = "GetPosts", action = "View" },
+                constraints: new { id = @"\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Login",
                 url: "Manage/Login/{action}",
                 defaults: new { controller = "Login", action = "SignIn" }
@@ -28,7 +35,7 @@ namespace MyPersonalBlog
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Posts", action = "Index", id = UrlParameter.Optional },
                 constraints: new { controller = "(?!Admin).*" }
             );
         }

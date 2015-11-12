@@ -5,10 +5,12 @@ namespace MyPersonalBlog.Repositories
 {
     public interface IPostRepository
     {
-        IEnumerable<Post> Posts { get; }
+        IEnumerable<Post> GetPosts { get; }
+
+        Post GetPostById(int id);
 
         void SavePost(Post post);
 
-        Post deletePost(int postId);
+        Post DeletePost(int postId);
     }
 }

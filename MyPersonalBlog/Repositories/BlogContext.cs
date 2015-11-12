@@ -24,6 +24,9 @@ namespace MyPersonalBlog.Repositories
                 .Map(m => m.MapLeftKey("PostId")
                     .MapRightKey("TagId")
                     .ToTable("PostTag"));
+
+            // Реализация связи 1 : M для моделей Пост - Комментарий
+            modelBuilder.Entity<Post>().HasMany(p => p.Comments).WithRequired(p => p.Post).HasForeignKey(c => c.PostId);
         }
     }
 }

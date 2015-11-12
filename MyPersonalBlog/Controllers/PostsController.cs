@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using MyPersonalBlog.Models;
 using MyPersonalBlog.Repositories;
+using System.Data.Entity;
+using MyPersonalBlog.Infrastructure;
 
 namespace MyPersonalBlog.Controllers
 {    
@@ -19,10 +21,24 @@ namespace MyPersonalBlog.Controllers
 
         public ViewResult Index()
         {
-            var result = _postRepository.Posts
+            var result = _postRepository.GetPosts
                 .Where(p => p.Published == true);
 
             return View(result);
+        }
+
+        public ActionResult View(int id)
+        {
+            // TODO: Добавить добавление комментариев
+
+            var result = _postRepository.GetPostById(id);
+                
+            if (result != null && result.Published == true)
+            {
+                return View("Detailed", result);
+            }
+
+            return new HttpNotFoundResult();
         }
     }
 }

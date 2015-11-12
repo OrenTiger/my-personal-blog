@@ -149,6 +149,7 @@
     <Compile Include="Infrastructure\Concrete\FormAuthProvider.cs" />
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Infrastructure\NoDirectAccessAttribute.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Repositories\Abstract\IAdminRepository.cs" />
@@ -172,6 +173,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_HeadPartial.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Posts\Detailed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using MyPersonalBlog.Infrastructure;
 using MyPersonalBlog.Models;
+using System.Data.Entity;
 
 namespace MyPersonalBlog.Repositories
 {
@@ -11,7 +12,7 @@ namespace MyPersonalBlog.Repositories
     {
         private BlogContext _db = new BlogContext();
 
-        public IEnumerable<Post> Posts
+        public IEnumerable<Post> GetPosts
         {
             get
             {
@@ -19,12 +20,20 @@ namespace MyPersonalBlog.Repositories
             }
         }
 
+        public Post GetPostById(int id)
+        {
+            return _db.Posts
+                .Where(p => p.Id == id)
+                .Include(p => p.Comments)
+                .FirstOrDefault();
+        }
+
         public void SavePost(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public Post deletePost(int postId)
+        public Post DeletePost(int postId)
         {
             throw new NotImplementedException();
         }
