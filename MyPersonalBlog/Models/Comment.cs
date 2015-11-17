@@ -8,13 +8,13 @@ namespace MyPersonalBlog.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Автор")]
-        [MaxLength(50, ErrorMessage = "Превышена максимальная длина (50 символов)")]
+        [Display(Name = "Имя")]
+        [StringLength(50, ErrorMessage = "Превышена максимальная длина (50 символов)")]
         public string Username { get; set; }
 
         [Required]
-        [Display(Name = "Текст")]
-        [MaxLength(1000, ErrorMessage = "Превышена максимальная длина (1000 символов)")]
+        [Display(Name = "Комментарий")]
+        [StringLength(1000, ErrorMessage = "Превышена максимальная длина (1000 символов)")]
         public string Text { get; set; }
 
         [Required]
@@ -22,6 +22,5 @@ namespace MyPersonalBlog.Models
 
         [Required]
         public int PostId { get; set; }
-        public Post Post { get; set; }
     }
 }

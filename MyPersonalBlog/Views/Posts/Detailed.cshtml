@@ -37,3 +37,5 @@
         <p class="text-muted">Пока никто не оставил комментарий</p>
     }
 </div>
+
+@Html.Partial("_CommentForm", new Comment(), new ViewDataDictionary { { "PostId", ViewContext.RouteData.Values["id"] } })

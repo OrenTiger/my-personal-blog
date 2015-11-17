@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MyPersonalBlog.Infrastructure;
 using MyPersonalBlog.Models;
 using System.Data.Entity;
 

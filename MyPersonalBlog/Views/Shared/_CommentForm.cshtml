@@ -1,0 +1,32 @@
+﻿@model MyPersonalBlog.Models.Comment
+
+@using (Html.BeginForm("Save", "Comment", FormMethod.Post, new { role = "form" }))
+{ 
+    <h4>Что вы думаете?</h4>
+    <div class="form-group comment-form">
+        @Html.ValidationSummary()
+
+        <input type="hidden" name="PostId" value = @ViewData["PostId"] />
+
+        <div class="form-group">
+            <label>Ваше имя:</label>
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Комментарий:</label>
+            @Html.TextAreaFor(m => m.Text, new { @class = "form-control", rows = "7" })
+        </div>
+        <button type="submit" class="btn btn-default">Отправить</button>
+    </div>
+}
+
+<script>
+    $().function
+    {
+        $("input[data-val-length-max]").each(function () {
+            var $this = $(this);
+            var data = $this.data();
+            $this.attr("maxlength", data.valLengthMax);
+        });
+    }
+</script>
