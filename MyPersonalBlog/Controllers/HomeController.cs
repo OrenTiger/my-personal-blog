@@ -8,7 +8,12 @@ namespace MyPersonalBlog.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ViewResult About()
+        {
+            return View();
+        }
+
+        public ViewResult Contacts()
         {
             return View();
         }

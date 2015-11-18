@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MyPersonalBlog.Infrastructure
+
+@{
     ViewBag.Title = "My personal blog";
 }
 
@@ -11,8 +13,27 @@
         <div class="jumbotron">
             <h2>My Personal Blog</h2>
             <p>in developing...</p>
-            @Html.ActionLink("Панель администратора", "SignIn", "Login")
+            @Html.ActionLink("Панель администратора", "", "Manage/Admin")
         </div>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#user-menu">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="user-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="@Html.IsActive("Posts", "Index")">@Html.ActionLink("Блог", "Index", "Posts")</li>
+                        <li class="@Html.IsActive("Home", "About")">@Html.ActionLink("Обо мне", "About", "Home")</li>
+                        <li class="@Html.IsActive("Home", "Contacts")">@Html.ActionLink("Контакты", "Contacts", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
         <div class="row">
                 <div class="col-sm-9">

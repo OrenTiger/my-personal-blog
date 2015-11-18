@@ -13,6 +13,7 @@ namespace MyPersonalBlog.Repositories
         {
             List<Post> testPosts = new List<Post>();
 
+            // TODO: Добавить больше записей
             testPosts.Add(new Post { Id = 1, Title = "Test blog  post #1", IntroText = "Intro Text", MainText = "Main Text", CreateDate = DateTime.Now, Published = true });
             testPosts.Add(new Post { Id = 2, Title = "Test blog post #2", IntroText = "Intro Text", MainText = "Main Text", CreateDate = DateTime.Now, Published = true });
             testPosts.Add(new Post { Id = 3, Title = "Test blog post #3", IntroText = "Intro Text", MainText = "Main Text", CreateDate = DateTime.Now, Published = true });

@@ -22,6 +22,7 @@ namespace MyPersonalBlog.Controllers
         public PostsController(IPostRepository postRepository)
         {
             _postRepository = postRepository;
+            PageSize = 3;
         }
 
         public ViewResult Index(int? page)
