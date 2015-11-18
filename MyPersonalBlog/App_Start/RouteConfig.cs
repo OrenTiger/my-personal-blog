@@ -15,25 +15,25 @@ namespace MyPersonalBlog
 
             routes.MapRoute(
                 name: null,
-                url: "{controller}/{id}",
-                defaults: new { controller = "GetPosts", action = "View" },
-                constraints: new { id = @"\d+" }
+                url: "page{page}",
+                defaults: new { controller = "Posts", action = "Index" },
+                constraints: new { page = @"\d+" }
             );
 
             routes.MapRoute(
-                name: "Login",
+                name: null,
                 url: "Manage/Login/{action}",
                 defaults: new { controller = "Login", action = "SignIn" }
             );
 
             routes.MapRoute(
-                name: "Manage",
+                name: null,
                 url: "Manage/Admin/{action}/{id}",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "Default",
+                name: null,
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Posts", action = "Index", id = UrlParameter.Optional },
                 constraints: new { controller = "(?!Admin).*" }
