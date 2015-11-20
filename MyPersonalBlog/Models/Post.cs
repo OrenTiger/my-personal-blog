@@ -16,6 +16,7 @@ namespace MyPersonalBlog.Models
         [MaxLength(500, ErrorMessage = "Превышена максимальная длина (500 символов)")]
         public string IntroText { get; set; }
 
+        [Required]
         [MaxLength(10000, ErrorMessage = "Превышена максимальная длина (10000 символов)")]
         public string MainText { get; set; }
         

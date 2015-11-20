@@ -1,0 +1,9 @@
+﻿@using MyPersonalBlog.Models;
+@model IEnumerable<Tag>
+
+<h4 class="text-info">Теги</h4>
+
+@foreach (var item in Model)
+{
+    <span class="label label-success">@item.Name</span>
+}

@@ -22,6 +22,12 @@ namespace MyPersonalBlog
 
             routes.MapRoute(
                 name: null,
+                url: "Search/{query}",
+                defaults: new { controller = "Search", action = "Search", query = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: null,
                 url: "Manage/Login/{action}",
                 defaults: new { controller = "Login", action = "SignIn" }
             );

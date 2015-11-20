@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyPersonalBlog.Infrastructure;
-using MyPersonalBlog.Models;
+using MyPersonalBlog.ViewModels;
 
 namespace MyPersonalBlog.Controllers
 {

@@ -13,7 +13,6 @@ namespace MyPersonalBlog.Repositories
         {
             List<Post> testPosts = new List<Post>();
 
-            // TODO: Добавить больше записей
             testPosts.Add(new Post { Id = 1, Title = "Test blog post #1", IntroText = "Intro Text", MainText = "Main Text", CreateDate = DateTime.Now, Published = true });
             testPosts.Add(new Post { Id = 2, Title = "Test blog post #2", IntroText = "Intro Text", MainText = "Main Text", CreateDate = DateTime.Now, Published = true });
             testPosts.Add(new Post { Id = 3, Title = "Test blog post #3", IntroText = "Intro Text", MainText = "Main Text", CreateDate = DateTime.Now, Published = true });
@@ -43,11 +42,21 @@ namespace MyPersonalBlog.Repositories
             testTags.Add(new Tag { Id = 2, Name = "ASP.NET MVC", Posts = new List<Post>() { testPosts[0], testPosts[1] } });
             testTags.Add(new Tag { Id = 3, Name = "Web API" });
             testTags.Add(new Tag { Id = 4, Name = "Web Dev", Posts = new List<Post>() { testPosts[0] } });
+            testTags.Add(new Tag { Id = 5, Name = "Visual Studio", Posts = new List<Post>() { testPosts[4] } });
+            testTags.Add(new Tag { Id = 6, Name = "WinPhone", Posts = new List<Post>() { testPosts[7] } });
+            testTags.Add(new Tag { Id = 7, Name = "Xamarin", Posts = new List<Post>() { testPosts[8] } });
+            testTags.Add(new Tag { Id = 8, Name = ".NET", Posts = new List<Post>() { testPosts[5] } });
+            testTags.Add(new Tag { Id = 9, Name = "Unity3D", Posts = new List<Post>() { testPosts[6] } });
 
             db.Tags.Add(testTags[0]);
             db.Tags.Add(testTags[1]);
             db.Tags.Add(testTags[2]);
             db.Tags.Add(testTags[3]);
+            db.Tags.Add(testTags[4]);
+            db.Tags.Add(testTags[5]);
+            db.Tags.Add(testTags[6]);
+            db.Tags.Add(testTags[7]);
+            db.Tags.Add(testTags[8]);
 
             db.Comments.Add(new Comment { Id = 1, Text = "Test Comment #1", CreateDate = DateTime.Now, Username = "User 1", PostId = 1 });
             db.Comments.Add(new Comment { Id = 2, Text = "Test Comment #2", CreateDate = DateTime.Now, Username = "User 2", PostId = 1 });

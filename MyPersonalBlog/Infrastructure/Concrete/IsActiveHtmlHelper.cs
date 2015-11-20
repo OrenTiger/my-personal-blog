@@ -2,7 +2,7 @@
 
 namespace MyPersonalBlog.Infrastructure
 {
-    public static class Utilities
+    public static partial class Utilities
     {
         public static string IsActive(this HtmlHelper html, string controller, string action)
         {

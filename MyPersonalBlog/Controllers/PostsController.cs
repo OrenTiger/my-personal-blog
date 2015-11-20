@@ -8,7 +8,6 @@ using MyPersonalBlog.Repositories;
 using System.Data.Entity;
 using MyPersonalBlog.Infrastructure;
 using PagedList;
-using System.Diagnostics;
 
 namespace MyPersonalBlog.Controllers
 {    
@@ -31,6 +30,7 @@ namespace MyPersonalBlog.Controllers
 
             var result = _postRepository.GetPosts
                 .Where(p => p.Published == true)
+                .OrderByDescending(p => p.Id)
                 .ToPagedList(pageNumber, PageSize);
 
             return View(result);

@@ -46,3 +46,10 @@
 {
     padding-left: 20px;
 }
+
+/* Исправляем баг Bootstrap с .glyphicon*/
+/* https://github.com/twbs/bootstrap/issues/10936 */
+.glyphicon
+{
+    top: 0;
+}

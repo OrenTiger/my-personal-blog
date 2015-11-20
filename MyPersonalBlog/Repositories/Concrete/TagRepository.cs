@@ -1,37 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using MyPersonalBlog.Models;
 using System.Data.Entity;
 
 namespace MyPersonalBlog.Repositories
 {
-    public class PostRepository : IPostRepository
+    public class TagRepository : ITagRepository
     {
         private BlogContext _db = new BlogContext();
 
-        public IEnumerable<Post> GetPosts
+        public IEnumerable<Tag> GetTags
         {
             get
             {
-                return _db.Posts;
+                return _db.Tags;
             }
         }
 
-        public Post GetPostById(int id)
+        public Tag GetTagById(int id)
         {
-            return _db.Posts
-                .Where(p => p.Id == id)
-                .Include(p => p.Comments)
+            return _db.Tags
+                .Where(t => t.Id == id)
                 .FirstOrDefault();
         }
 
-        public void SavePost(Post post)
+        public void SaveTag(Tag tag)
         {
             throw new NotImplementedException();
         }
 
-        public Post DeletePost(int postId)
+        public Tag DeleteTag(int tagId)
         {
             throw new NotImplementedException();
         }

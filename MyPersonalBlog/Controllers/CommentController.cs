@@ -22,6 +22,8 @@ namespace MyPersonalBlog.Controllers
         [HttpPost]
         public ActionResult Save(Comment comment)
         {
+            // TODO: Добавить проверку введеных данных на недопустимые знаки
+            // TODO: Добавить капчу
             if (ModelState.IsValid)
             {
                 _commentRepository.SaveComment(comment);

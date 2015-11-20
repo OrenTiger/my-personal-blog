@@ -33,6 +33,7 @@ namespace MyPersonalBlog.Infrastructure
             _kernel.Bind<IAdminRepository>().To<AdminRepository>();
             _kernel.Bind<IPostRepository>().To<PostRepository>();
             _kernel.Bind<ICommentRepository>().To<CommentRepository>();
+            _kernel.Bind<ITagRepository>().To<TagRepository>();
         }
     }
 }

@@ -152,15 +152,21 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Concrete\FormAuthProvider.cs" />
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\IsActiveHtmlHelper.cs" />
+    <Compile Include="Infrastructure\Concrete\SubstringTextHtmlHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Repositories\Abstract\ITagRepository.cs" />
+    <Compile Include="Repositories\Concrete\TagRepository.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Repositories\Abstract\IAdminRepository.cs" />
     <Compile Include="Repositories\Abstract\ICommentRepository.cs" />
     <Compile Include="Repositories\Abstract\IPostRepository.cs" />
@@ -187,6 +193,9 @@
     <Content Include="Views\Posts\Detailed.cshtml" />
     <Content Include="Views\Shared\_CommentForm.cshtml" />
     <Content Include="Views\Home\Contacts.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\SearchResult.cshtml" />
+    <Content Include="Views\Tags\SearchList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -196,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="obj\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
