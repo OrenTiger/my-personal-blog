@@ -16,31 +16,66 @@
     <p>По вашему запросу ничего не найдено</p>
 }
 else
-{ 
-    <p>По запросу &quot;@Model.SearchQuery&quot; найдено результатов: @Model.Founded</p>
-    
+{
+    if (Model.TagId != null)
+    {
+        <p>Найдено результатов: @Model.Founded</p>
+    }
+    else
+    {
+        <p>По запросу &quot;@Model.SearchQuery&quot; найдено результатов: @Model.Founded</p>
+    }
+        
     if (Model.Founded > 0)
     { 
         <span class="small">Отсортировано&nbsp;</span>
-        if (Model.Order == "desc")
-        {
-            @Html.ActionLink("сначала новые", "", "Search", new { query = Model.SearchQuery }, new { @class = "label label-default" })
-            <span class="label label-success">&nbsp;сначала старые</span>
+        if (Model.Order == "asc")
+        { 
+            if (Model.TagId != null)
+            {
+                @Html.ActionLink("сначала новые", "", "Search", new { tag = Model.TagId }, new { @class = "label label-default" })                
+            }
+            else
+            {
+                @Html.ActionLink("сначала новые", "", "Search", new { query = Model.SearchQuery }, new { @class = "label label-default" })
+            }
+            <span class="label label-primary">&nbsp;сначала старые</span>
         }
         else
         {
-            <span class="label label-success">сначала новые&nbsp;</span>            
-            @Html.ActionLink("сначала старые", "", "Search", new { query = Model.SearchQuery, order = "desc" }, new { @class = "label label-default" })
+            <span class="label label-primary">сначала новые&nbsp;</span>
+    
+            if (Model.TagId != null)
+            {
+                @Html.ActionLink("сначала старые", "", "Search", new { tag = Model.TagId, order = "asc" }, new { @class = "label label-default" })
+            }
+            else
+            {
+                @Html.ActionLink("сначала старые", "", "Search", new { query = Model.SearchQuery, order = "asc" }, new { @class = "label label-default" })
+            }
         }
     }
-    
+
     foreach (Post item in Model.SearchResults)
     {
         <h3>@Html.ActionLink(item.Title, "View", "Posts", new { id = item.Id }, new { @class = "text-primary" })</h3>
         @Html.SubstringText(item.IntroText, 100);
         <span class="text-muted small">@item.CreateDate.ToString("dd MMMM yyyy в HH:mm")</span>
+        if (item.Tags.Count != 0)
+        {
+            <div class="text-success small">
+                Метки: @String.Join(", ", from tag in item.Tags select tag.Name)
+            </div>
+        }
         <hr />
     }
-    
-    @Html.PagedListPager(Model.SearchResults, page => Url.Action("", "Search", new { query = Model.SearchQuery, order = Model.Order, page }))
+
+    if (Model.TagId != null)
+    {
+        @Html.PagedListPager(Model.SearchResults, page => Url.Action("", "Search", new { Model.SearchQuery, order = Model.Order, page }))
+    }
+    else
+    {
+        @Html.PagedListPager(Model.SearchResults, page => Url.Action("", "Search", new { Model.SearchQuery, order = Model.Order, page }))
+    }
 }

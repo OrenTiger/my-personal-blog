@@ -5,5 +5,5 @@
 
 @foreach (var item in Model)
 {
-    <span class="label label-success">@item.Name</span>
+    <span>@Html.ActionLink(@item.Name, "", "Search", new { tag = item.Id }, new { @class = "label label-success" })</span>
 }

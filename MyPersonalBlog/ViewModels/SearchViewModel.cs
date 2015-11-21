@@ -8,6 +8,8 @@ namespace MyPersonalBlog.ViewModels
     {
         public string SearchQuery { get; set; }
 
+        public int? TagId { get; set; }
+        
         public IPagedList<Post> SearchResults { get; set; }
 
         public int Founded { get; set; }
