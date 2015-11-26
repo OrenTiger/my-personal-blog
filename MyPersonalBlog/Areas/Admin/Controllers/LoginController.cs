@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using MyPersonalBlog.Infrastructure;
 using MyPersonalBlog.ViewModels;
 
-namespace MyPersonalBlog.Controllers
+namespace MyPersonalBlog.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
@@ -29,7 +29,7 @@ namespace MyPersonalBlog.Controllers
             {
                 if (_authProvider.Authenticate(model.Login, model.PasswordHash))
                 {
-                    return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
+                    return Redirect(returnUrl ?? Url.Action("List", "Posts"));
                 }
                 else
                 {

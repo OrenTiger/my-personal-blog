@@ -28,21 +28,10 @@ namespace MyPersonalBlog
 
             routes.MapRoute(
                 name: null,
-                url: "Manage/Login/{action}",
-                defaults: new { controller = "Login", action = "SignIn" }
-            );
-
-            routes.MapRoute(
-                name: null,
-                url: "Manage/Admin/{action}/{id}",
-                defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
-                name: null,
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Posts", action = "Index", id = UrlParameter.Optional },
-                constraints: new { controller = "(?!Admin).*" }
+                constraints: new { controller = "(?!Admin).*" },
+                namespaces: new string[] { "MyPersonalBlog.Controllers" }
             );
         }
     }

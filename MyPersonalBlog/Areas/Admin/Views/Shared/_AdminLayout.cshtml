@@ -12,12 +12,10 @@
         <header class="jumbotron">
             <h2>My Personal Blog</h2>
             <p>Admin panel (in developing...)</p>
-            @Html.ActionLink("Главная", "Index", "Posts")
+            @Html.ActionLink("Главная", "Index", "Posts", new { area = "" }, null)
         </header>
 
-        <div class="row col-md-12">
-            @RenderBody()
-        </div>
+        @RenderBody()
 
         <footer class="container-fluid text-center">
             <p>footer block</p>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MyPersonalBlog.Controllers
+namespace MyPersonalBlog.Areas.Admin.Controllers
 {
     [Authorize]
     public class AdminController : Controller

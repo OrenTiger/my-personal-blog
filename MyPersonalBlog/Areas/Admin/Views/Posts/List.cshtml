@@ -1,0 +1,38 @@
+﻿@using MyPersonalBlog.Models
+@using PagedList.Mvc;
+@model  PagedList.IPagedList<Post>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4>Все записи</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>CreateDate</th>
+            <th>Published</th>
+            <th colspan="2" class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Id</td>
+                <td>@post.Title</td>
+                <td>@post.CreateDate</td>
+                <td>@post.Published</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Posts", new { id = @post.Id }, new { @class = "btn btn-success" })</td>
+                <td><button type="submit" class="btn btn-danger">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+@Html.PagedListPager(Model, page => Url.Action("List", new { page }))
