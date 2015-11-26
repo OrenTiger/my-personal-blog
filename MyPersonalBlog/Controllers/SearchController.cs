@@ -20,36 +20,29 @@ namespace MyPersonalBlog.Controllers
         {
             _postRepository = postRepository;
             _tagRepository = tagRepository;
+            // TODO: Добавить получение PageSize из Settings
             PageSize = 3;
         }
 
         [HttpGet]
-        public ActionResult Search(string query, string tag, string order, int? page)
+        public ViewResult Search(string query, int? tag, string order, int? page)
         {
             if (String.IsNullOrEmpty(query) == false)
-            {
+            {                
                 return SearchByText(query, order, page);
             }
             else if (tag != null)
             {
-                int _tag;
-                if (Int32.TryParse(tag, out _tag))
-                {
-                    return SearchByTag(_tag, order, page);
-                }
-                else
-                {
-                    return View("SearchResult");
-                }
+                return SearchByTag(tag, order, page);
             }
             else
             {
                 return View("SearchResult");
-            }                
+            }
         }
 
-        [ChildActionOnly]
-        public ActionResult SearchByText(string query, string order, int? page)
+        [NonAction]
+        public ViewResult SearchByText(string query, string order, int? page)
         {
             query = query.Trim();
             int pageNumber = page ?? 1;
@@ -73,17 +66,18 @@ namespace MyPersonalBlog.Controllers
             {
                 SearchQuery = query,
                 SearchResults = searchResult.ToPagedList(pageNumber, PageSize),
-                Founded = searchResult.Count(),
+                CountFounded = searchResult.Count(),
                 Order = order
             };
 
             return View("SearchResult", searchModel);
         }
 
-        [ChildActionOnly]
-        public ActionResult SearchByTag(int tag, string order, int? page)
+        [NonAction]
+        public ViewResult SearchByTag(int? tag, string order, int? page)
         {
             int pageNumber = page ?? 1;
+            tag = tag ?? 0;
 
             var searchResult = _tagRepository
                 .GetTags
@@ -104,7 +98,7 @@ namespace MyPersonalBlog.Controllers
             {
                 TagId = tag,
                 SearchResults = searchResult.ToPagedList(pageNumber, PageSize),
-                Founded = searchResult.Count(),
+                CountFounded = searchResult.Count(),
                 Order = order
             };
 

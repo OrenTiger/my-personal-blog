@@ -12,7 +12,7 @@ namespace MyPersonalBlog.ViewModels
         
         public IPagedList<Post> SearchResults { get; set; }
 
-        public int Founded { get; set; }
+        public int CountFounded { get; set; }
 
         public string Order { get; set; }
     }

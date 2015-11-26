@@ -19,14 +19,14 @@ else
 {
     if (Model.TagId != null)
     {
-        <p>Найдено результатов: @Model.Founded</p>
+        <p>Найдено результатов: @Model.CountFounded</p>
     }
     else
     {
-        <p>По запросу &quot;@Model.SearchQuery&quot; найдено результатов: @Model.Founded</p>
+        <p>По запросу &quot;@Model.SearchQuery&quot; найдено результатов: @Model.CountFounded</p>
     }
         
-    if (Model.Founded > 0)
+    if (Model.CountFounded > 0)
     { 
         <span class="small">Отсортировано&nbsp;</span>
         if (Model.Order == "asc")

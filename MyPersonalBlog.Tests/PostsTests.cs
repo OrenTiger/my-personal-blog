@@ -27,7 +27,6 @@ namespace MyPersonalBlog.Tests
             };
         }
 
-
         [TestMethod]
         public void Can_Get_All_Published_Posts()
         {
@@ -65,8 +64,8 @@ namespace MyPersonalBlog.Tests
             // Утверждение - количество записей в хранилище и полученных в методе равны, и также равны сами записи           
             Post[] postsArray = result.ToArray();
             Assert.IsTrue(postsArray.Length == 2);
-            Assert.AreEqual("Title 4", postsArray[0].Title);
-            Assert.AreEqual("Title 5", postsArray[1].Title);
+            Assert.AreEqual("Title 2", postsArray[0].Title);
+            Assert.AreEqual("Title 1", postsArray[1].Title);
         }
 
         [TestMethod]

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyPersonalBlog.ViewModels;
-using MyPersonalBlog.Controllers;
+using MyPersonalBlog.Areas.Admin.Controllers;
 using MyPersonalBlog.Infrastructure;
 
 namespace MyPersonalBlog.Tests
