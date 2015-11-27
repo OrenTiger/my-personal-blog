@@ -17,13 +17,15 @@ namespace MyPersonalBlog
                 name: null,
                 url: "page{page}",
                 defaults: new { controller = "Posts", action = "Index" },
-                constraints: new { page = @"\d+" }
+                constraints: new { page = @"\d+" },
+                namespaces: new string[] { "MyPersonalBlog.Controllers" }
             );
 
             routes.MapRoute(
                 name: null,
                 url: "Search/{query}",
-                defaults: new { controller = "Search", action = "Search", query = UrlParameter.Optional }
+                defaults: new { controller = "Search", action = "Search", query = UrlParameter.Optional },
+                namespaces: new string[] { "MyPersonalBlog.Controllers" }
             );
 
             routes.MapRoute(

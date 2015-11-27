@@ -11,7 +11,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>@Html.ActionLink("ID", "List", "Posts", new { orderby = "id" }, null)</th>
             <th>Title</th>
             <th>CreateDate</th>
             <th>Published</th>
@@ -26,8 +26,8 @@
                 <td>@post.Title</td>
                 <td>@post.CreateDate</td>
                 <td>@post.Published</td>
-                <td>@Html.ActionLink("Edit", "Edit", "Posts", new { id = @post.Id }, new { @class = "btn btn-success" })</td>
-                <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                <td>@Html.ActionLink("Edit", "Edit", "Posts", new { id = @post.Id }, new { @class = "btn btn-success btn-sm" })</td>
+                <td><button type="submit" class="btn btn-danger btn-sm">Delete</button></td>
             </tr>
         }
     </tbody>
@@ -35,4 +35,14 @@
 
 <br />
 
-@Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">@Html.ActionLink("Новый пост", "Edit", "Posts", null, new { @class = "btn btn-success" })</div>
+        <div class="col-sm-4">@Html.PagedListPager(Model, page => Url.Action("List", "Posts", new { page }))</div>
+        <div class="col-sm-4">Показывать неопубликованные: @Html.CheckBox("show-unpublished-checkbox", true, new { @class = "checkbox checkbox-inline" })</div>
+    </div>
+</div>
+
+<script>
+    $("[id='show-unpublished-checkbox']").bootstrapSwitch({ size: 'normal', onText: 'Да', offText: 'Нет', labelWidth: 50, handleWidth: 50 });
+</script>

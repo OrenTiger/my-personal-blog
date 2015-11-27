@@ -6,6 +6,12 @@ namespace MyPersonalBlog.Infrastructure
 {
     public static partial class Utilities
     {
+        /// <summary>
+        /// HTML-хэлпер для вывода "обрезанной" строки
+        /// </summary>
+        /// <param name="text">Исходная строка</param>
+        /// <param name="maxLength">Максимальная длина выводимой строки</param>
+        /// <returns>Возвращает строку вида "<p>text...</p>"</returns>
         public static MvcHtmlString SubstringText(this HtmlHelper html, string text, int maxLength)
         {
             StringBuilder result = new StringBuilder();

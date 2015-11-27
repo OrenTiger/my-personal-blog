@@ -10,7 +10,8 @@ using MyPersonalBlog.Infrastructure;
 using PagedList;
 
 namespace MyPersonalBlog.Areas.Admin.Controllers
-{    
+{
+    [Authorize]
     public class PostsController : Controller
     {
         private IPostRepository _postRepository;
@@ -41,7 +42,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
                 
             if (result != null)
             {
-                return View("Detailed", result);
+                return View(result);
             }
 
             return new HttpNotFoundResult();

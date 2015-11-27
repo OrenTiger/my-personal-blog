@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MyPersonalBlog.Infrastructure;
+
+@{
     ViewBag.Title = "Панель администратора";
 }
 
@@ -14,6 +16,26 @@
             <p>Admin panel (in developing...)</p>
             @Html.ActionLink("Главная", "Index", "Posts", new { area = "" }, null)
         </header>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#user-menu">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="user-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="@Html.IsActive("List", "Posts")">@Html.ActionLink("Посты", "List", "Posts", new { area = "Admin" }, null)</li>
+                        <li class="@Html.IsActive("List", "Comments")">@Html.ActionLink("Комментарии", "List", "Comments")</li>
+                        <li class="@Html.IsActive("Index", "Settings")">@Html.ActionLink("Настройки", "Index", "Settings")</li>
+                        <li>@Html.ActionLink("Выход", "Login", "SignOut")</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
         @RenderBody()
 

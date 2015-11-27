@@ -13,7 +13,7 @@
         <div class="jumbotron">
             <h2>My Personal Blog</h2>
             <p>in developing...</p>
-            @Html.ActionLink("Панель администратора", "", "Manage/Admin")
+            @Html.ActionLink("Панель администратора", "List", "Posts", new { area = "Admin" }, null)
         </div>
 
         <nav class="navbar navbar-inverse">
@@ -27,9 +27,9 @@
                 </div>
                 <div class="collapse navbar-collapse" id="user-menu">
                     <ul class="nav navbar-nav">
-                        <li class="@Html.IsActive("Posts", "Index")">@Html.ActionLink("Блог", "Index", "Posts")</li>
-                        <li class="@Html.IsActive("Home", "About")">@Html.ActionLink("Обо мне", "About", "Home")</li>
-                        <li class="@Html.IsActive("Home", "Contacts")">@Html.ActionLink("Контакты", "Contacts", "Home")</li>
+                        <li class="@Html.IsActive("Index", "Posts")">@Html.ActionLink("Блог", "Index", "Posts")</li>
+                        <li class="@Html.IsActive("About", "Home")">@Html.ActionLink("Обо мне", "About", "Home")</li>
+                        <li class="@Html.IsActive("Contacts", "Home")">@Html.ActionLink("Контакты", "Contacts", "Home")</li>
                     </ul>
                 </div>
             </div>
