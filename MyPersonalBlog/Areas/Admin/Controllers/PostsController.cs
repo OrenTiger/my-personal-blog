@@ -25,13 +25,37 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             PageSize = 5;
         }
 
-        public ViewResult List(int? page)
+        public ViewResult List(int? page, string order, string published)
         {
             int pageNumber = (page ?? 1);
 
-            var result = _postRepository.GetPosts
-                .OrderByDescending(p => p.Id)
-                .ToPagedList(pageNumber, PageSize);
+            ViewBag.IdOrder = String.IsNullOrEmpty(order) ? "IdAsc" : "";
+            ViewBag.DateOrder = order == "Date" ? "DateAsc" : "Date";
+
+            var result = _postRepository.GetPosts;
+
+            if (published == "hide")
+            {
+                result = result.Where(p => p.Published == true);
+            }
+
+            switch (order)
+            {
+                case "IdAsc":
+                    result = result.OrderBy(p => p.Id);
+                    break;
+                case "DateAsc":
+                    result = result.OrderBy(p => p.CreateDate);
+                    break;
+                case "Date":
+                    result = result.OrderByDescending(p => p.CreateDate);
+                    break;
+                default:
+                    result = result.OrderByDescending(p => p.Id);
+                    break;
+            }
+
+            result = result.ToPagedList(pageNumber, PageSize);
 
             return View(result);
         }

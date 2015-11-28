@@ -19,7 +19,7 @@ namespace MyPersonalBlog.Infrastructure
 
             var returnActive = action == routeAction && controller == routeControl; 
 
-            return returnActive ? "active" : "";
+            return returnActive ? "active" : string.Empty;
         }
     }
 }

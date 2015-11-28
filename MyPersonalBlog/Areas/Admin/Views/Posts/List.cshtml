@@ -1,5 +1,6 @@
 ﻿@using MyPersonalBlog.Models
 @using PagedList.Mvc;
+@using MyPersonalBlog.Infrastructure
 @model  PagedList.IPagedList<Post>
 
 @{
@@ -11,11 +12,11 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>@Html.ActionLink("ID", "List", "Posts", new { orderby = "id" }, null)</th>
-            <th>Title</th>
-            <th>CreateDate</th>
-            <th>Published</th>
-            <th colspan="2" class="text-center">Actions</th>
+            <th><a href="@Url.Current(new { order = ViewBag.Order })">ID</a></th>
+            <th>Заголовок</th>
+            <th><a href="@Url.Current(new { order = ViewBag.DateOrder })">Дата создания</a></th>
+            <th>Опубликован</th>
+            <th colspan="3" class="text-center">Действия</th>
         </tr>
     </thead>
     <tbody>
@@ -25,9 +26,10 @@
                 <td>@post.Id</td>
                 <td>@post.Title</td>
                 <td>@post.CreateDate</td>
-                <td>@post.Published</td>
-                <td>@Html.ActionLink("Edit", "Edit", "Posts", new { id = @post.Id }, new { @class = "btn btn-success btn-sm" })</td>
-                <td><button type="submit" class="btn btn-danger btn-sm">Delete</button></td>
+                <td class="text-center">@Html.CheckBoxFor(p => post.Published, new { @class = "checkbox checkbox-inline", disabled = "disabled" })</td>
+                <td><a class="btn btn-success btn-sm" href="@Url.Action("Edit", "Posts", new { id = @post.Id})"><span class="glyphicon glyphicon-edit"></span> Редактировать</a></td>
+                <td><a class="btn btn-info btn-sm" href="@Url.Action("Edit", "Posts", new { id = @post.Id})"><span class="glyphicon glyphicon-eye-open"></span> Просмотреть</a></td>
+                <td><a class="btn btn-danger btn-sm" href="@Url.Action("Edit", "Posts", new { id = @post.Id})"><span class="glyphicon glyphicon-remove"></span> Удалить</a></td>
             </tr>
         }
     </tbody>
@@ -37,12 +39,12 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4">@Html.ActionLink("Новый пост", "Edit", "Posts", null, new { @class = "btn btn-success" })</div>
-        <div class="col-sm-4">@Html.PagedListPager(Model, page => Url.Action("List", "Posts", new { page }))</div>
-        <div class="col-sm-4">Показывать неопубликованные: @Html.CheckBox("show-unpublished-checkbox", true, new { @class = "checkbox checkbox-inline" })</div>
+        <div class="col-sm-4"><a class="btn btn-success" href="@Url.Action("Edit", "Posts")"><span class="glyphicon glyphicon-pencil"></span> Новый пост</a></div>
+        <div class="col-sm-4">@Html.PagedListPager(Model, page => Url.Current(new { page }).ToString())</div>
+        <div class="col-sm-4">
+            <span>Неопубликованные: </span>
+            <a class="btn btn-info btn-xs @Html.IsSetParameter("published", null, "active")" href="@Url.Current(new { published = "" })">Показать</a>
+            <a class="btn btn-warning btn-xs @Html.IsSetParameter("published", "hide", "active")" href="@Url.Current(new { published = "hide", page = "" }) ">Скрыть</a>
+        </div>
     </div>
 </div>
-
-<script>
-    $("[id='show-unpublished-checkbox']").bootstrapSwitch({ size: 'normal', onText: 'Да', offText: 'Нет', labelWidth: 50, handleWidth: 50 });
-</script>
