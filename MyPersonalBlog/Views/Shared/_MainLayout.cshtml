@@ -43,13 +43,15 @@
                 <div class="col-sm-3">
                     @using (Html.BeginForm("", "Search", FormMethod.Get, new { role = "form", @class = "form-inline" }))
                     {
-                        <div class="form-group">
+                        <div class="input-group">
                             <input type="text" class="form-control" id="query" name="query" placeholder="Поиск" />
-                        </div>
-                        <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
+                            </span>
+                        </div>                                               
                     }
                     <hr />
-                    @Html.Action("SearchList", "Tags")
+                    @Html.Action("List", "Tags")
                 </div>
             </div>
 

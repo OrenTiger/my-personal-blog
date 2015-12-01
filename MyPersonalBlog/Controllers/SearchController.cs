@@ -48,7 +48,7 @@ namespace MyPersonalBlog.Controllers
             int pageNumber = page ?? 1;
 
             var searchResult = _postRepository
-                .GetPosts
+                .Get
                 .Where(p => p.Published == true);
 
             searchResult = searchResult.Where(p => p.Title.ToLower().Contains(query.ToLower()) || p.IntroText.ToLower().Contains(query.ToLower()) || p.MainText.ToLower().Contains(query.ToLower()));

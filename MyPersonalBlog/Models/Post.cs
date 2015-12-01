@@ -19,9 +19,10 @@ namespace MyPersonalBlog.Models
         [Required]
         [MaxLength(10000, ErrorMessage = "Превышена максимальная длина (10000 символов)")]
         public string MainText { get; set; }
-        
+
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
         [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreateDate { get; set; }
 
         public bool Published { get; set; }

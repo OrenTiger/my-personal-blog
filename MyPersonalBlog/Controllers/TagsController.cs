@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.Mvc;
 using MyPersonalBlog.Models;
 using MyPersonalBlog.Repositories;
@@ -17,11 +18,12 @@ namespace MyPersonalBlog.Controllers
             _tagRepository = tagRepository;
         }
 
-        // GET: Tags
-        public ActionResult SearchList()
+        [ChildActionOnly]
+        [OutputCache(Duration=300)]
+        public PartialViewResult List()
         {
             var tags = _tagRepository.GetTags.OrderBy(t => t.Name);
-            return View(tags);
+            return PartialView(tags);
         }
     }
 }

@@ -2,40 +2,46 @@
 @model Post
 
 @{
+    
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="text-primary">@Model.Title</h2>
+<h2>@ViewBag.ActionName</h2>
 
-<hr />
-
-<p class="text-justify">@Model.IntroText</p>
-
-<p class="text-justify">@Model.MainText</p>
-
-@foreach (var tag in Model.Tags)
+@using (Html.BeginForm("Edit", "Posts", FormMethod.Post, new { role = "form", @class = "form" }))
 {
-     <span class="label label-success">@tag.Name</span>
+    @Html.ValidationSummary();
+
+    <div class="form-group">
+        <label>Заголовок:</label>
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Вводный текст:</label>
+        @Html.TextAreaFor(m => m.IntroText, new { @class = "form-control", rows = 5 })
+    </div>
+    <div class="form-group">
+        <label>Основной текст</label>
+        @Html.TextAreaFor(m => m.MainText, new { @class = "form-control", rows = 10 })
+    </div>
+    <div class="form-group">
+        <label>Дата создания:</label>
+        @Html.TextBoxFor(m => m.CreateDate, Model.CreateDate.ToString("dd.MM.yyyy HH:mm:ss"), new { @class = "form-control", data_val = "false" })
+    </div>
+    <div class="form-group">
+        <label>Опубликован:</label>
+        @Html.CheckBoxFor(m => m.Published, new { @class = "checkbox checkbox-inline" })
+    </div>
+
+    <h4>Тэги:</h4>
+    <div class="form-group">
+        @foreach (Tag tag in ViewBag.Tags)
+        {
+            <input type="checkbox" name="selectedTags" class="checkbox checkbox-inline" value="@tag.Id" @(Model.Tags.Contains(tag) ? "checked=\"checked\"" : "") />
+            <span class="tag">@tag.Name</span>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="@(Session["PostsListUrlWithParams"] ?? Url.Action("List", "Posts"))" class="btn btn-warning">Назад</a>       
 }
-
-<span class="small text-muted">@Model.CreateDate.ToString("dd/MM/yyyy HH:mm")</span>
-
-<hr />
-
-<h4 class="text-muted">Комментарии</h4>
-
-<div class="comments">
-    @foreach (var comment in Model.Comments)
-    {
-        <span class="glyphicon glyphicon-user usericon"></span><span class="text-info username">@comment.Username</span><time class="text-muted small">@comment.CreateDate.ToString("dd/MM/yyyy HH:mm")</time>
-        <p>@comment.Text</p>
-        <hr />
-    }
-
-    @if (Model.Comments.Count == 0)
-    {
-        <p class="text-muted">Пока никто не оставил комментарий</p>
-    }
-</div>
-
-@Html.Partial("_CommentForm", new Comment(), new ViewDataDictionary { { "PostId", ViewContext.RouteData.Values["id"] } })

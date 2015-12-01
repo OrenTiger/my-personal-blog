@@ -44,7 +44,7 @@ namespace MyPersonalBlog.Tests
             Mock<IPostRepository> mockPostRepository = new Mock<IPostRepository>();
             Mock<ITagRepository> mockTagRepository = new Mock<ITagRepository>();
 
-            mockPostRepository.Setup(m => m.GetPosts).Returns(_posts);
+            mockPostRepository.Setup(m => m.Get).Returns(_posts);
             mockTagRepository.Setup(m => m.GetTags).Returns(_tags);
 
             // Организация - создание контроллера
@@ -67,7 +67,7 @@ namespace MyPersonalBlog.Tests
             Mock<IPostRepository> mockPostRepository = new Mock<IPostRepository>();
             Mock<ITagRepository> mockTagRepository = new Mock<ITagRepository>();
 
-            mockPostRepository.Setup(m => m.GetPosts).Returns(_posts);
+            mockPostRepository.Setup(m => m.Get).Returns(_posts);
             mockTagRepository.Setup(m => m.GetTags).Returns(_tags);
 
             // Организация - создание контроллера

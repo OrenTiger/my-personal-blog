@@ -10,7 +10,7 @@ namespace MyPersonalBlog.Repositories
     {
         private BlogContext _db = new BlogContext();
 
-        public IEnumerable<Post> GetPosts
+        public IEnumerable<Post> Get
         {
             get
             {
@@ -18,7 +18,7 @@ namespace MyPersonalBlog.Repositories
             }
         }
 
-        public Post GetPostById(int id)
+        public Post GetById(int id)
         {
             return _db.Posts
                 .Where(p => p.Id == id)
@@ -26,12 +26,42 @@ namespace MyPersonalBlog.Repositories
                 .FirstOrDefault();
         }
 
-        public void SavePost(Post post)
+        public void Save(Post post, int[] selectedTags)
         {
-            throw new NotImplementedException();
+            if (post.Id == 0)
+            {
+                _db.Posts.Add(post);
+            }
+            else
+            {
+                Post dbEntry = _db.Posts.Find(post.Id);
+
+                if (dbEntry != null)
+                {
+                    dbEntry.Title = post.Title;
+                    dbEntry.IntroText = post.IntroText;
+                    dbEntry.MainText = post.MainText;
+                    dbEntry.CreateDate = post.CreateDate;                    
+                    dbEntry.Published = post.Published;
+
+                    if (selectedTags != null)
+                    {
+                        dbEntry.Tags.Clear();
+
+                        foreach (var tag in _db.Tags.Where(t => selectedTags.Contains(t.Id)))
+                        {
+                            dbEntry.Tags.Add(tag);
+                        }
+                    }
+
+                    _db.Entry(dbEntry).State = EntityState.Modified;
+                }
+            }
+
+            _db.SaveChanges();
         }
 
-        public Post DeletePost(int postId)
+        public Post Delete(int postId)
         {
             throw new NotImplementedException();
         }

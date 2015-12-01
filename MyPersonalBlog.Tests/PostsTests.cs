@@ -33,7 +33,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
 
-            mock.Setup(m => m.GetPosts).Returns(_posts);
+            mock.Setup(m => m.Get).Returns(_posts);
 
             // Организация - создание контроллера
             PostsController target = new PostsController(mock.Object);
@@ -52,7 +52,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
 
-            mock.Setup(m => m.GetPosts).Returns(_posts);
+            mock.Setup(m => m.Get).Returns(_posts);
 
             // Организация - создание контроллера
             PostsController target = new PostsController(mock.Object);
@@ -74,7 +74,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
 
-            mock.Setup(m => m.GetPostById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.Published == true).SingleOrDefault());
+            mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.Published == true).SingleOrDefault());
 
             // Организация - создание контроллера
             PostsController target = new PostsController(mock.Object);
@@ -93,7 +93,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
 
-            mock.Setup(m => m.GetPostById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.Published == true).SingleOrDefault());
+            mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.Published == true).SingleOrDefault());
 
             // Организация - создание контроллера
             PostsController target = new PostsController(mock.Object);

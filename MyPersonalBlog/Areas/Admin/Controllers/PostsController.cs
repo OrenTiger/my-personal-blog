@@ -15,13 +15,15 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
     public class PostsController : Controller
     {
         private IPostRepository _postRepository;
+        private ITagRepository _tagRepository;
         
         // TODO: Сделать возможность установки количества постов на страницу в админке
         public int PageSize { get; set; }
 
-        public PostsController(IPostRepository postRepository)
+        public PostsController(IPostRepository postRepository, ITagRepository tagRepository)
         {
             _postRepository = postRepository;
+            _tagRepository = tagRepository;
             PageSize = 5;
         }
 
@@ -29,10 +31,15 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         {
             int pageNumber = (page ?? 1);
 
+            ViewBag.CurrentUrl = Request.QueryString;
+
             ViewBag.IdOrder = String.IsNullOrEmpty(order) ? "IdAsc" : "";
             ViewBag.DateOrder = order == "Date" ? "DateAsc" : "Date";
+            
+            // Сохраняем URL со всеми параметрами QueryString для последующих запросов
+            Session["PostsListUrlWithParams"] = Request.Url.AbsoluteUri;
 
-            var result = _postRepository.GetPosts;
+            var result = _postRepository.Get;
 
             if (published == "hide")
             {
@@ -62,14 +69,44 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            var result = _postRepository.GetPostById(id);
+            var post = _postRepository.GetById(id);
                 
-            if (result != null)
+            if (post == null)
             {
-                return View(result);
+                return new HttpNotFoundResult();
             }
 
-            return new HttpNotFoundResult();
+            ViewBag.ActionName = "Пост - Редактирование";
+            ViewBag.Tags = _tagRepository.GetTags.ToList();
+
+            return View(post);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Post post, int[] selectedTags)
+        {
+            if (ModelState.IsValid)
+            {                
+                _postRepository.Save(post, selectedTags);
+
+                return Redirect(Session["PostsListUrlWithParams"].ToString() ?? Url.Action("List", "Posts"));
+            }
+
+            ViewBag.ActionName = "Пост - Редактирование";
+            ViewBag.Tags = _tagRepository.GetTags.ToList();
+            return View(post);
+        }
+
+        public ActionResult FastView(int id)
+        {
+            var post = _postRepository.GetById(id);
+      
+            if (post == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            return PartialView("_FastView", post);
         }
     }
 }

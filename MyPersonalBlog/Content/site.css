@@ -63,3 +63,13 @@
 {
     vertical-align: middle;
 }
+
+input[type="checkbox"]
+{
+    margin: 0;
+}
+
+.tag
+{
+    margin-right: 20px;
+}

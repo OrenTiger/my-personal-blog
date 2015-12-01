@@ -28,7 +28,7 @@ namespace MyPersonalBlog.Controllers
         {
             int pageNumber = (page ?? 1);
 
-            var result = _postRepository.GetPosts
+            var result = _postRepository.Get
                 .Where(p => p.Published == true)
                 .OrderByDescending(p => p.Id)
                 .ToPagedList(pageNumber, PageSize);
@@ -38,7 +38,7 @@ namespace MyPersonalBlog.Controllers
 
         public ActionResult View(int id)
         {
-            var result = _postRepository.GetPostById(id);
+            var result = _postRepository.GetById(id);
                 
             if (result != null && result.Published == true)
             {
