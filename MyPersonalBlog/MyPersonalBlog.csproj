@@ -129,6 +129,7 @@
     <Content Include="Areas\Admin\Views\Posts\List.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\_FastView.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\_ConfirmDeleteView.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

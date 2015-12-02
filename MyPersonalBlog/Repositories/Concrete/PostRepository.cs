@@ -28,8 +28,17 @@ namespace MyPersonalBlog.Repositories
 
         public void Save(Post post, int[] selectedTags)
         {
-            if (post.Id == 0)
+            if (post.Id == 0)            
             {
+                if (selectedTags != null)
+                {
+                    foreach (var tag in _db.Tags.Where(t => selectedTags.Contains(t.Id)))
+                    {
+                        post.Tags.Add(tag);
+                    }
+                }
+
+                post.CreateDate = DateTime.Now;
                 _db.Posts.Add(post);
             }
             else
@@ -40,8 +49,7 @@ namespace MyPersonalBlog.Repositories
                 {
                     dbEntry.Title = post.Title;
                     dbEntry.IntroText = post.IntroText;
-                    dbEntry.MainText = post.MainText;
-                    dbEntry.CreateDate = post.CreateDate;                    
+                    dbEntry.MainText = post.MainText;              
                     dbEntry.Published = post.Published;
 
                     if (selectedTags != null)
@@ -61,9 +69,11 @@ namespace MyPersonalBlog.Repositories
             _db.SaveChanges();
         }
 
-        public Post Delete(int postId)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Post post = new Post { Id = id };
+            _db.Entry(post).State = EntityState.Deleted;
+            _db.SaveChanges();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,10 +15,12 @@ namespace MyPersonalBlog.Models
 
         [Required]
         [MaxLength(500, ErrorMessage = "Превышена максимальная длина (500 символов)")]
+        [AllowHtml]
         public string IntroText { get; set; }
 
         [Required]
         [MaxLength(10000, ErrorMessage = "Превышена максимальная длина (10000 символов)")]
+        [AllowHtml]
         public string MainText { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]

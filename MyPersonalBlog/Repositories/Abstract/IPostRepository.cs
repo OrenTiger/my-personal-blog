@@ -11,6 +11,6 @@ namespace MyPersonalBlog.Repositories
 
         void Save(Post post, int[] selectedTags = null);
 
-        Post Delete(int postId);
+        void Delete(int postId);
     }
 }

@@ -67,6 +67,16 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             return View(result);
         }
 
+        public ActionResult Add()
+        {
+            Post post = new Post();
+
+            ViewBag.ActionName = "Пост - Добавление";
+            ViewBag.Tags = _tagRepository.GetTags.ToList();
+
+            return View("Edit", post);
+        }
+
         public ActionResult Edit(int id)
         {
             var post = _postRepository.GetById(id);
@@ -83,7 +93,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Post post, int[] selectedTags)
+        public ActionResult Save(Post post, int[] selectedTags)
         {
             if (ModelState.IsValid)
             {                
@@ -92,7 +102,6 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
                 return Redirect(Session["PostsListUrlWithParams"].ToString() ?? Url.Action("List", "Posts"));
             }
 
-            ViewBag.ActionName = "Пост - Редактирование";
             ViewBag.Tags = _tagRepository.GetTags.ToList();
             return View(post);
         }
@@ -107,6 +116,28 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             }
 
             return PartialView("_FastView", post);
+        }
+
+        public ActionResult ConfirmDelete(int id)
+        {
+            var post = _postRepository.GetById(id);
+
+            if (post == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            return PartialView("_ConfirmDeleteView", post);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            _postRepository.Delete(id);
+
+            string redirectUrl = Session["PostsListUrlWithParams"].ToString() ?? Url.Action("List", "Posts");
+
+            return Redirect(redirectUrl);
         }
     }
 }

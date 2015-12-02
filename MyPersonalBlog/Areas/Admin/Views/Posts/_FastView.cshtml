@@ -2,9 +2,6 @@
 
 <h4>@Model.Title</h4>
 
-<p>@Model.IntroText</p>
+<p>@Html.Raw(Model.IntroText)</p>
 
-<p>@Model.MainText</p>
-
-<p>@Model.CreateDate.ToString("dd.MM.yyyy HH:mm:ss")</p>
-
+<p>@Html.Raw(Model.MainText)</p>
