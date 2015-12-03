@@ -5,8 +5,15 @@ namespace MyPersonalBlog.Repositories
 {
     public interface ICommentRepository
     {
-        void SaveComment(Comment comment);
+        IEnumerable<Comment> Comments
+        {
+            get;
+        }
 
-        Comment DeleteComment(int commentId);
+        Comment GetById(int id);
+
+        void Save(Comment comment);
+
+        void Delete(int id);
     }
 }

@@ -28,8 +28,8 @@ namespace MyPersonalBlog.Controllers
         {
             int pageNumber = (page ?? 1);
 
-            var result = _postRepository.Get
-                .Where(p => p.Published == true)
+            var result = _postRepository.Posts
+                .Where(p => p.IsPublished == true)
                 .OrderByDescending(p => p.Id)
                 .ToPagedList(pageNumber, PageSize);
 
@@ -40,7 +40,7 @@ namespace MyPersonalBlog.Controllers
         {
             var result = _postRepository.GetById(id);
                 
-            if (result != null && result.Published == true)
+            if (result != null && result.IsPublished == true)
             {
                 return View("Detailed", result);
             }

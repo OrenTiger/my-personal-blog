@@ -48,8 +48,8 @@ namespace MyPersonalBlog.Controllers
             int pageNumber = page ?? 1;
 
             var searchResult = _postRepository
-                .Get
-                .Where(p => p.Published == true);
+                .Posts
+                .Where(p => p.IsPublished == true);
 
             searchResult = searchResult.Where(p => p.Title.ToLower().Contains(query.ToLower()) || p.IntroText.ToLower().Contains(query.ToLower()) || p.MainText.ToLower().Contains(query.ToLower()));
 
@@ -83,7 +83,7 @@ namespace MyPersonalBlog.Controllers
                 .GetTags
                 .Where(t => t.Id == tag)
                 .SelectMany(t => t.Posts)
-                .Where(p => p.Published == true);
+                .Where(p => p.IsPublished == true);
 
             if (String.Compare(order, "asc", true) == 0)
             {

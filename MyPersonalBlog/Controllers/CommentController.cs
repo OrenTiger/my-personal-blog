@@ -26,7 +26,7 @@ namespace MyPersonalBlog.Controllers
             // TODO: Добавить капчу
             if (ModelState.IsValid)
             {
-                _commentRepository.SaveComment(comment);
+                _commentRepository.Save(comment);
                 return Redirect(Request.UrlReferrer.ToString());
             }
             else return View();

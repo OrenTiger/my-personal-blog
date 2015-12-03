@@ -24,11 +24,11 @@
         {
             <tr>
                 <td>@post.Id</td>
-                <td>@post.Title</td>
+                <td>@Html.SubstringText(post.Title, 50)</td>
                 <td>@post.CreateDate</td>
-                <td class="text-center">@Html.CheckBoxFor(p => post.Published, new { @class = "checkbox checkbox-inline", disabled = "disabled" })</td>
+                <td class="text-center">@Html.CheckBoxFor(p => post.IsPublished, new { @class = "checkbox checkbox-inline", disabled = "disabled" })</td>
                 <td><a class="btn btn-success btn-sm" href="@Url.Action("Edit", "Posts", new { id = @post.Id})"><span class="glyphicon glyphicon-edit"></span> Редактировать</a></td>
-                <td><a class="btn btn-info btn-sm" href="javascript:showFastView(@post.Id)"><span class="glyphicon glyphicon-eye-open"></span> Просмотреть</a></td>
+                <td><a class="btn btn-info btn-sm" href="javascript:showPreview(@post.Id)"><span class="glyphicon glyphicon-eye-open"></span> Просмотреть</a></td>
                 <td><a class="btn btn-danger btn-sm" href="javascript:confirmDelete(@post.Id)"><span class="glyphicon glyphicon-remove"></span> Удалить</a></td>
             </tr>
         }
@@ -68,11 +68,11 @@
 
 <script type="text/javascript">
 
-    var getPostUrl = '@Url.Action("FastView")';
+    var getPostUrl = '@Url.Action("PreView")';
     var confirmDeleteUrl = '@Url.Action("ConfirmDelete")';
     var deleteUrl = '@Url.Action("Delete")';
 
-    function showFastView(id) {
+    function showPreview(id) {
         $('#modalActions').html('<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>');
         $('#modalBody').html('<p>Загрузка содержимого...</p>');
         $('#modalBody').load(getPostUrl, { 'id': id });

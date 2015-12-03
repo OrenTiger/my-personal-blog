@@ -1,0 +1,57 @@
+﻿@using PagedList.Mvc;
+@using MyPersonalBlog.Infrastructure
+@using MyPersonalBlog.Models;
+
+@model  PagedList.IPagedList<Comment>
+
+@{
+    ViewBag.Title = "Панель администратора - Комментарии";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4>Комментарии</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Автор</th>
+            <th>Текст</th>
+            <th><a href="@Url.Current(new { order = TempData["order"] })">Дата создания</a></th>
+            <th>Пост</th>
+            <th>Проверен</th>
+            <th colspan="3" class="text-center">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model)
+        {
+            <tr>
+                <td>@comment.Id</td>
+                <td>@comment.Username</td>                
+                <td>@Html.SubstringText(comment.Text, 20)</td>
+                <td>@comment.CreateDate</td>
+                <td>@Html.SubstringText(comment.Post.Title, 20)</td>                
+                <td class="text-center">@Html.CheckBoxFor(p => comment.IsApproved, new { @class = "checkbox checkbox-inline", disabled = "disabled" })</td>
+                <td><a class="btn btn-success btn-sm" href="@Url.Action("Edit", "Comments", new { id = @comment.Id})"><span class="glyphicon glyphicon-edit"></span> Редактировать</a></td>
+                <td><a class="btn btn-info btn-sm" href="javascript:showPreview(@comment.Id)"><span class="glyphicon glyphicon-eye-open"></span> Просмотреть</a></td>
+                <td><a class="btn btn-danger btn-sm" href="javascript:confirmDelete(@comment.Id)"><span class="glyphicon glyphicon-remove"></span> Удалить</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">@Html.PagedListPager(Model, page => Url.Current(new { page }).ToString())</div>
+        <div class="col-sm-4">
+            <span>Показать: </span>
+            <a class="btn btn-info btn-xs @Html.IsSetParameter("approved", null, "active")" href="@Url.Current(new { published = "" })">Все комментарии </a>
+            <a class="btn btn-warning btn-xs @Html.IsSetParameter("approved", "hide", "active")" href="@Url.Current(new { published = "hide", page = "" }) ">Только непроверенные</a>
+        </div>
+    </div>
+</div>
+

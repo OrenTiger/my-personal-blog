@@ -10,7 +10,7 @@ namespace MyPersonalBlog.Repositories
     {
         private BlogContext _db = new BlogContext();
 
-        public IEnumerable<Post> Get
+        public IEnumerable<Post> Posts
         {
             get
             {
@@ -50,7 +50,7 @@ namespace MyPersonalBlog.Repositories
                     dbEntry.Title = post.Title;
                     dbEntry.IntroText = post.IntroText;
                     dbEntry.MainText = post.MainText;              
-                    dbEntry.Published = post.Published;
+                    dbEntry.IsPublished = post.IsPublished;
 
                     if (selectedTags != null)
                     {
@@ -71,9 +71,13 @@ namespace MyPersonalBlog.Repositories
 
         public void Delete(int id)
         {
-            Post post = new Post { Id = id };
-            _db.Entry(post).State = EntityState.Deleted;
-            _db.SaveChanges();
+            Post dbEntry = _db.Posts.Find(id);
+
+            if (dbEntry != null)
+            {
+                _db.Posts.Remove(dbEntry);
+                _db.SaveChanges();
+            }
         }
     }
 }

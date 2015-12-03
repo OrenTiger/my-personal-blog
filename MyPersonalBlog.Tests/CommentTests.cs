@@ -34,7 +34,7 @@ namespace MyPersonalBlog.Tests
             ActionResult result = target.Save(comment);
 
             // Утверждение - проверка того, что к хранилищу производится обращение
-            mock.Verify(m => m.SaveComment(comment));
+            mock.Verify(m => m.Save(comment));
 
             // Утверждение - проверка типа результата метода
             Assert.IsInstanceOfType(result, typeof(RedirectResult));
@@ -59,7 +59,7 @@ namespace MyPersonalBlog.Tests
             ActionResult result = target.Save(comment);
 
             // Утверждение - проверка того, что к хранилищу не производится обращение
-            mock.Verify(m => m.SaveComment(It.IsAny<Comment>()), Times.Never());
+            mock.Verify(m => m.Save(It.IsAny<Comment>()), Times.Never());
 
             // Утверждение - проверка типа результата метода
             Assert.IsInstanceOfType(result, typeof(ViewResult));

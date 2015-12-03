@@ -39,11 +39,11 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             // Сохраняем URL со всеми параметрами QueryString для последующих запросов
             Session["PostsListUrlWithParams"] = Request.Url.AbsoluteUri;
 
-            var result = _postRepository.Get;
+            var result = _postRepository.Posts;
 
             if (published == "hide")
             {
-                result = result.Where(p => p.Published == true);
+                result = result.Where(p => p.IsPublished == true);
             }
 
             switch (order)
@@ -99,14 +99,14 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             {                
                 _postRepository.Save(post, selectedTags);
 
-                return Redirect(Session["PostsListUrlWithParams"].ToString() ?? Url.Action("List", "Posts"));
+                return Redirect(Session["PostsListUrlWithParams"] != null ? Session["PostsListUrlWithParams"].ToString() : Url.Action("List", "Posts"));
             }
 
             ViewBag.Tags = _tagRepository.GetTags.ToList();
             return View(post);
         }
 
-        public ActionResult FastView(int id)
+        public ActionResult PreView(int id)
         {
             var post = _postRepository.GetById(id);
       
@@ -115,7 +115,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
                 return new HttpNotFoundResult();
             }
 
-            return PartialView("_FastView", post);
+            return PartialView("_PreView", post);
         }
 
         public ActionResult ConfirmDelete(int id)

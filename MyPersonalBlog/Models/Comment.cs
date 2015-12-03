@@ -21,6 +21,10 @@ namespace MyPersonalBlog.Models
         public DateTime CreateDate { get; set; }
 
         [Required]
+        public bool IsApproved { get; set; }
+
+        [Required]
         public int PostId { get; set; }
+        public Post Post { get; set; }
     }
 }

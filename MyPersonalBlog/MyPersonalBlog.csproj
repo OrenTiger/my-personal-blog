@@ -128,8 +128,9 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Posts\List.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Posts\_FastView.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\_PreView.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\_ConfirmDeleteView.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\List.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -154,6 +155,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

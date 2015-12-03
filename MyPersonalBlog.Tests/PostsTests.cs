@@ -19,11 +19,11 @@ namespace MyPersonalBlog.Tests
         {
             _posts = new List<Post>
             {
-                new Post { Id = 1, Title = "Title 1", IntroText = "Intro Text 1", MainText = "Main Text 1", CreateDate = DateTime.Now, Published = true, Tags = null },
-                new Post { Id = 2, Title = "Title 2", IntroText = "Intro Text 2", MainText = "Main Text 2", CreateDate = DateTime.Now, Published = true, Tags = null },
-                new Post { Id = 3, Title = "Title 3", IntroText = "Intro Text 3", MainText = "Main Text 3", CreateDate = DateTime.Now, Published = false, Tags = null },
-                new Post { Id = 4, Title = "Title 4", IntroText = "Intro Text 4", MainText = "Main Text 4", CreateDate = DateTime.Now, Published = true, Tags = null },
-                new Post { Id = 5, Title = "Title 5", IntroText = "Intro Text 5", MainText = "Main Text 5", CreateDate = DateTime.Now, Published = true, Tags = null },
+                new Post { Id = 1, Title = "Title 1", IntroText = "Intro Text 1", MainText = "Main Text 1", CreateDate = DateTime.Now, IsPublished = true, Tags = null },
+                new Post { Id = 2, Title = "Title 2", IntroText = "Intro Text 2", MainText = "Main Text 2", CreateDate = DateTime.Now, IsPublished = true, Tags = null },
+                new Post { Id = 3, Title = "Title 3", IntroText = "Intro Text 3", MainText = "Main Text 3", CreateDate = DateTime.Now, IsPublished = false, Tags = null },
+                new Post { Id = 4, Title = "Title 4", IntroText = "Intro Text 4", MainText = "Main Text 4", CreateDate = DateTime.Now, IsPublished = true, Tags = null },
+                new Post { Id = 5, Title = "Title 5", IntroText = "Intro Text 5", MainText = "Main Text 5", CreateDate = DateTime.Now, IsPublished = true, Tags = null },
             };
         }
 
@@ -33,7 +33,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
 
-            mock.Setup(m => m.Get).Returns(_posts);
+            mock.Setup(m => m.Posts).Returns(_posts);
 
             // Организация - создание контроллера
             PostsController target = new PostsController(mock.Object);
@@ -52,7 +52,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
 
-            mock.Setup(m => m.Get).Returns(_posts);
+            mock.Setup(m => m.Posts).Returns(_posts);
 
             // Организация - создание контроллера
             PostsController target = new PostsController(mock.Object);
@@ -74,7 +74,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
 
-            mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.Published == true).SingleOrDefault());
+            mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.IsPublished == true).SingleOrDefault());
 
             // Организация - создание контроллера
             PostsController target = new PostsController(mock.Object);
@@ -85,6 +85,7 @@ namespace MyPersonalBlog.Tests
             // Утверждение - в результате метода возвращается представление
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
+            Assert.IsNotNull(((ViewResult)result).Model);
         }
 
         [TestMethod]
@@ -93,7 +94,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
 
-            mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.Published == true).SingleOrDefault());
+            mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.IsPublished == true).SingleOrDefault());
 
             // Организация - создание контроллера
             PostsController target = new PostsController(mock.Object);

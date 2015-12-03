@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using MyPersonalBlog.Models;
 
 namespace MyPersonalBlog.Repositories
@@ -10,7 +11,24 @@ namespace MyPersonalBlog.Repositories
     {
         BlogContext _db = new BlogContext();
 
-        public void SaveComment(Comment comment)
+        public IEnumerable<Comment> Comments
+        {
+            get
+            {
+                return _db.Comments
+                    .Include(c => c.Post);
+            }
+        }
+
+        public Comment GetById(int id)
+        {
+            return _db.Comments
+                .Where(c => c.Id == id)
+                .Include(c => c.Post)
+                .FirstOrDefault();
+        }
+
+        public void Save(Comment comment)
         {
             if (comment.Id == 0)
             {
@@ -25,16 +43,21 @@ namespace MyPersonalBlog.Repositories
                 {
                     dbEntry.Text = comment.Text;
                     dbEntry.Username = comment.Username;
-                    dbEntry.CreateDate = comment.CreateDate;
                 }
             }
 
             _db.SaveChanges();
         }
 
-        public Comment DeleteComment(int commentId)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Comment dbEntry = _db.Comments.Find(id);
+            
+            if (dbEntry != null)
+            {
+                _db.Comments.Remove(dbEntry);
+                _db.SaveChanges();
+            }
         }
     }
 }

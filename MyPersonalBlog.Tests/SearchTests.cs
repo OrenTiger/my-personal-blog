@@ -21,11 +21,11 @@ namespace MyPersonalBlog.Tests
         {
             _posts = new List<Post>
             {
-                new Post { Id = 1, Title = "Title 1", IntroText = "Intro Text 1", MainText = "Main Text 1", CreateDate = DateTime.Now, Published = true, Tags = null },
-                new Post { Id = 2, Title = "Title 2", IntroText = "Intro Text 2", MainText = "Main Text 2", CreateDate = DateTime.Now.AddMinutes(1), Published = true, Tags = null },
-                new Post { Id = 3, Title = "Title 3", IntroText = "Intro Text 3", MainText = "Main Text 3", CreateDate = DateTime.Now.AddMinutes(1), Published = false, Tags = null },
-                new Post { Id = 4, Title = "Title 4", IntroText = "Intro Text 4", MainText = "Main Text 4", CreateDate = DateTime.Now.AddMinutes(1), Published = true, Tags = null },
-                new Post { Id = 5, Title = "Title 5", IntroText = "Intro Text 5", MainText = "Main Text 5", CreateDate = DateTime.Now.AddMinutes(1), Published = true, Tags = null },
+                new Post { Id = 1, Title = "Title 1", IntroText = "Intro Text 1", MainText = "Main Text 1", CreateDate = DateTime.Now, IsPublished = true, Tags = null },
+                new Post { Id = 2, Title = "Title 2", IntroText = "Intro Text 2", MainText = "Main Text 2", CreateDate = DateTime.Now.AddMinutes(1), IsPublished = true, Tags = null },
+                new Post { Id = 3, Title = "Title 3", IntroText = "Intro Text 3", MainText = "Main Text 3", CreateDate = DateTime.Now.AddMinutes(1), IsPublished = false, Tags = null },
+                new Post { Id = 4, Title = "Title 4", IntroText = "Intro Text 4", MainText = "Main Text 4", CreateDate = DateTime.Now.AddMinutes(1), IsPublished = true, Tags = null },
+                new Post { Id = 5, Title = "Title 5", IntroText = "Intro Text 5", MainText = "Main Text 5", CreateDate = DateTime.Now.AddMinutes(1), IsPublished = true, Tags = null },
             };
 
             _tags = new List<Tag>
@@ -44,7 +44,7 @@ namespace MyPersonalBlog.Tests
             Mock<IPostRepository> mockPostRepository = new Mock<IPostRepository>();
             Mock<ITagRepository> mockTagRepository = new Mock<ITagRepository>();
 
-            mockPostRepository.Setup(m => m.Get).Returns(_posts);
+            mockPostRepository.Setup(m => m.Posts).Returns(_posts);
             mockTagRepository.Setup(m => m.GetTags).Returns(_tags);
 
             // Организация - создание контроллера
@@ -67,7 +67,7 @@ namespace MyPersonalBlog.Tests
             Mock<IPostRepository> mockPostRepository = new Mock<IPostRepository>();
             Mock<ITagRepository> mockTagRepository = new Mock<ITagRepository>();
 
-            mockPostRepository.Setup(m => m.Get).Returns(_posts);
+            mockPostRepository.Setup(m => m.Posts).Returns(_posts);
             mockTagRepository.Setup(m => m.GetTags).Returns(_tags);
 
             // Организация - создание контроллера

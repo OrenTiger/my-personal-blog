@@ -28,7 +28,7 @@ namespace MyPersonalBlog.Models
         [Required]
         public DateTime CreateDate { get; set; }
 
-        public bool Published { get; set; }
+        public bool IsPublished { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
 
@@ -36,7 +36,7 @@ namespace MyPersonalBlog.Models
         
         public Post()
         {
-            Published = false;
+            IsPublished = false;
             Tags = new List<Tag>();
             Comments = new List<Comment>();
         }
