@@ -41,13 +41,37 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             return View(result);
         }
 
+        public ActionResult GetComment(int id, string action)
+        {
+            var result = _commentRepository.GetById(id);
+
+            if (result != null)
+            {
+                string viewName = "_ViewComment";
+
+                switch (action)
+                {
+                    case "viewComment":
+                        viewName = "_ViewComment";
+                        break;
+                    case "confirmDelete":
+                        viewName = "_ConfirmDelete";
+                        break;
+                }
+
+                return PartialView(viewName, result);
+            }
+
+            return new HttpNotFoundResult();
+        }
+
         public ActionResult Edit(int id)
         {
             var result = _commentRepository.GetById(id);
 
             if (result != null)
             {
-                return View(result);
+                return View("Edit", result);
             }
 
             return new HttpNotFoundResult();

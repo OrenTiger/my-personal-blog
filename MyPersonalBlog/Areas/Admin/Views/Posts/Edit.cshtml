@@ -41,5 +41,5 @@
     </div>
 
     <button type="submit" class="btn btn-success">Сохранить</button>
-    <a href="@(Session["PostsListUrlWithParams"] ?? Url.Action("List", "Posts"))" class="btn btn-warning">Назад</a>       
+    <a href="@Url.Action("List", "Posts", new { page = TempData["page"], order = TempData["order"], published = TempData["published"] })" class="btn btn-warning">Назад</a>       
 }

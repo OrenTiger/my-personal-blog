@@ -31,13 +31,14 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         {
             int pageNumber = (page ?? 1);
 
-            ViewBag.CurrentUrl = Request.QueryString;
+            //ViewBag.CurrentUrl = Request.QueryString;
 
+            // TODO: разобраться с сохранением путей
+            TempData["page"] = pageNumber;
             ViewBag.IdOrder = String.IsNullOrEmpty(order) ? "IdAsc" : "";
             ViewBag.DateOrder = order == "Date" ? "DateAsc" : "Date";
-            
-            // Сохраняем URL со всеми параметрами QueryString для последующих запросов
-            Session["PostsListUrlWithParams"] = Request.Url.AbsoluteUri;
+            TempData["order"] = order;
+            TempData["published"] = published;
 
             var result = _postRepository.Posts;
 
@@ -99,7 +100,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             {                
                 _postRepository.Save(post, selectedTags);
 
-                return Redirect(Session["PostsListUrlWithParams"] != null ? Session["PostsListUrlWithParams"].ToString() : Url.Action("List", "Posts"));
+                return RedirectToAction("List", "Posts", new { page = TempData["page"], order = TempData["order"], published = TempData["published"] });
             }
 
             ViewBag.Tags = _tagRepository.GetTags.ToList();
@@ -135,9 +136,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         {
             _postRepository.Delete(id);
 
-            string redirectUrl = Session["PostsListUrlWithParams"].ToString() ?? Url.Action("List", "Posts");
-
-            return Redirect(redirectUrl);
+            return RedirectToAction("List", "Posts", new { page = TempData["page"], order = TempData["order"], published = TempData["published"] });
         }
     }
 }

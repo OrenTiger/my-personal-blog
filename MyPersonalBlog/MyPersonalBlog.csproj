@@ -131,6 +131,8 @@
     <Content Include="Areas\Admin\Views\Posts\_PreView.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\_ConfirmDeleteView.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\_ViewComment.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\_ConfirmDelete.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
