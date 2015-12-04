@@ -134,6 +134,7 @@
     <Content Include="Areas\Admin\Views\Comments\_ViewComment.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\_ConfirmDelete.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -160,6 +161,8 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Models\Settings.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
@@ -169,12 +172,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Abstract\ISettingsProvider.cs" />
     <Compile Include="Infrastructure\Binders\DateTimeModelBinder.cs" />
     <Compile Include="Infrastructure\Concrete\CurrentUrlHtmlHelper.cs" />
     <Compile Include="Infrastructure\Concrete\FormAuthProvider.cs" />
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\IsActiveHtmlHelper.cs" />
     <Compile Include="Infrastructure\Concrete\IsSetParameterHtmlHelper.cs" />
+    <Compile Include="Infrastructure\Concrete\SettingsProvider.cs" />
     <Compile Include="Infrastructure\Concrete\SubstringTextHtmlHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -220,7 +225,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="obj\" />
   </ItemGroup>
   <PropertyGroup>

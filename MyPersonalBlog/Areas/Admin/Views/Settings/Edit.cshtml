@@ -1,0 +1,19 @@
+﻿@model MyPersonalBlog.Areas.Admin.Models.Settings
+
+@{
+    ViewBag.Title = "Настройки";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Настройки</h2>
+
+<p>@Model.BlogTitle</p>
+
+<p>@Model.ShortDescription</p>
+
+<p>@Model.AdminEmail</p>
+
+<p>@Model.PostListPageSize</p>
+
+<p>@Model.PageSize</p>
+

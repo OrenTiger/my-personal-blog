@@ -34,6 +34,7 @@ namespace MyPersonalBlog.Infrastructure
             _kernel.Bind<IPostRepository>().To<PostRepository>();
             _kernel.Bind<ICommentRepository>().To<CommentRepository>();
             _kernel.Bind<ITagRepository>().To<TagRepository>();
+            _kernel.Bind<ISettingsProvider>().To<SettingsProvider>();
         }
     }
 }

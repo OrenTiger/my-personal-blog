@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using MyPersonalBlog.Models;
 using MyPersonalBlog.Repositories;
 using MyPersonalBlog.Controllers;
+using MyPersonalBlog.Infrastructure;
 
 namespace MyPersonalBlog.Tests
 {
@@ -33,12 +34,14 @@ namespace MyPersonalBlog.Tests
         {
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
+            // Организация - создание имитированного поставщика настроек
+            Mock<ISettingsProvider> mockSettingsProvider = new Mock<ISettingsProvider>();
 
             mock.Setup(m => m.Posts).Returns(_posts);
+            mockSettingsProvider.Setup(s => s.GetSetting<int>("PostListPageSize")).Returns(5);
 
             // Организация - создание контроллера
-            PostsController target = new PostsController(mock.Object);
-            target.PageSize = 5;
+            PostsController target = new PostsController(mock.Object, mockSettingsProvider.Object);
 
             // Действие - получаем все записи постов из хранилища
             int result = ((IEnumerable<Post>)target.Index(null).Model).Count();
@@ -52,12 +55,14 @@ namespace MyPersonalBlog.Tests
         {
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
+            // Организация - создание имитированного поставщика настроек
+            Mock<ISettingsProvider> mockSettingsProvider = new Mock<ISettingsProvider>();
 
             mock.Setup(m => m.Posts).Returns(_posts);
+            mockSettingsProvider.Setup(s => s.GetSetting<int>("PostListPageSize")).Returns(2);
 
             // Организация - создание контроллера
-            PostsController target = new PostsController(mock.Object);
-            target.PageSize = 2;
+            PostsController target = new PostsController(mock.Object, mockSettingsProvider.Object);
 
             // Действие - получаем все записи постов на второй странице
             var result = (IEnumerable<Post>)target.Index(2).Model;
@@ -74,11 +79,13 @@ namespace MyPersonalBlog.Tests
         {
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
+            // Организация - создание имитированного поставщика настроек
+            Mock<ISettingsProvider> mockSettingsProvider = new Mock<ISettingsProvider>();
 
             mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.IsPublished == true).SingleOrDefault());
 
             // Организация - создание контроллера
-            PostsController target = new PostsController(mock.Object);
+            PostsController target = new PostsController(mock.Object, mockSettingsProvider.Object);
 
             // Действие - получаем отдельный пост
             var result = target.View(2);
@@ -94,11 +101,13 @@ namespace MyPersonalBlog.Tests
         {
             // Организация - создание имитированного хранилища
             Mock<IPostRepository> mock = new Mock<IPostRepository>();
+            // Организация - создание имитированного поставщика настроек
+            Mock<ISettingsProvider> mockSettingsProvider = new Mock<ISettingsProvider>();
 
             mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _posts.Where(p => p.Id == id && p.IsPublished == true).SingleOrDefault());
 
             // Организация - создание контроллера
-            PostsController target = new PostsController(mock.Object);
+            PostsController target = new PostsController(mock.Object, mockSettingsProvider.Object);
 
             // Действие - получаем отдельный пост
             var result = target.View(0);

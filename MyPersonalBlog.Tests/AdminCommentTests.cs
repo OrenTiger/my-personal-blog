@@ -128,7 +128,7 @@ namespace MyPersonalBlog.Tests
             Comment comment = new Comment { Id = 1, Username = "Test User", Text = "Comment text", CreateDate = DateTime.Now, IsApproved = true, PostId = 1 };
 
             // Действие - попытка сохранения товара
-            ActionResult result = target.Edit(comment);
+            ActionResult result = target.Save(comment);
 
             // Утверждение - проверка того, что к хранилищу производится обращение
             mock.Verify(m => m.Save(comment));
@@ -153,7 +153,7 @@ namespace MyPersonalBlog.Tests
             target.ModelState.AddModelError("error", "error");
 
             // Действие - попытка сохранения товара
-            ActionResult result = target.Edit(comment);
+            ActionResult result = target.Save(comment);
 
             // Утверждение - проверка того, что обращения к хранилищу не производится
             mock.Verify(m => m.Save(It.IsAny<Comment>()), Times.Never);
