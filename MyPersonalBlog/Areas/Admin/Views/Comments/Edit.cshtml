@@ -1,0 +1,36 @@
+﻿@model MyPersonalBlog.Models.Comment
+
+@{
+    ViewBag.Title = "Комментарий - Редактирование";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Комментарий - Редактирование</h2>
+
+@using (Html.BeginForm("Save", "Comments", FormMethod.Post, new { role = "form", @class = "form" }))
+{
+    @Html.ValidationSummary()
+    
+    @Html.HiddenFor(m => m.Id)
+    
+    <div class="form-group">
+        <label>Автор:</label>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", maxlength = 50 })
+    </div>
+    <div class="form-group">
+        <label>Текст:</label>
+        @Html.TextAreaFor(m => m.Text, new { @class = "form-control", rows = 5, maxlength = 1000 })
+    </div>
+    <div class="form-group">
+        <label>Дата создания:</label>
+        @Html.DisplayFor(m => m.CreateDate)
+    </div>
+    <div class="form-group">
+        <label>Проверен</label>
+        @Html.CheckBoxFor(m => m.IsApproved, new { @class = "checkbox checkbox-inline" })
+    </div>
+    
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="@Url.Action("List", "Comments", new { page = TempData["page"], order = TempData["order"], approved = TempData["approved"] })" class="btn btn-warning">Назад</a>
+    TempData.Keep();
+}

@@ -13,8 +13,8 @@
 
 @if (Model.Count == 0)
 {
-    <div class="text-center">
-        <h4>Список комментариев пуст</h4>
+    <div class="empty-list-content">
+        <h4 class="text-muted">Список комментариев пуст</h4>
     </div>
     
     return;
@@ -37,7 +37,7 @@
         {
             <tr>
                 <td>@comment.Id</td>
-                <td>@comment.Username</td>                
+                <td>@Html.SubstringText(comment.Username, 15)</td>
                 <td>@Html.SubstringText(comment.Text, 20)</td>
                 <td>@comment.CreateDate</td>
                 <td>@Html.SubstringText(comment.Post.Title, 20)</td>                

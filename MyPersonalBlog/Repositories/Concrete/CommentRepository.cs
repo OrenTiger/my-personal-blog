@@ -43,6 +43,7 @@ namespace MyPersonalBlog.Repositories
                 {
                     dbEntry.Text = comment.Text;
                     dbEntry.Username = comment.Username;
+                    dbEntry.IsApproved = comment.IsApproved;
                 }
             }
 

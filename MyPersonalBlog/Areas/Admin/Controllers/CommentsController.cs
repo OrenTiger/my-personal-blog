@@ -24,7 +24,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         {
             int pageNumber = (page ?? 1);
             TempData["page"] = pageNumber;
-            TempData["showNotApproved"] = approved;
+            TempData["approved"] = approved;
             TempData["order"] = String.IsNullOrEmpty(order) ? "DateAsc" : String.Empty;
 
             var result = _commentRepository.Comments;
@@ -78,13 +78,13 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Comment comment)
+        public ActionResult Save(Comment comment)
         {
             if (ModelState.IsValid)
             {
                 _commentRepository.Save(comment);
 
-                return RedirectToAction("List", new { page = TempData["page"], showNotApproved = TempData["showNotApproved"] });
+                return RedirectToAction("List", new { page = TempData["page"], approved = TempData["approved"] });
             }
 
             return View(comment);
@@ -95,7 +95,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         {
             _commentRepository.Delete(id);
 
-            return RedirectToAction("List", new { page = TempData["page"], showNotApproved = TempData["showNotApproved"] });
+            return RedirectToAction("List", new { page = TempData["page"], approved = TempData["approved"] });
         }
     }
 }

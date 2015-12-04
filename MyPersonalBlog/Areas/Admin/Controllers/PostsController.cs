@@ -31,14 +31,12 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         {
             int pageNumber = (page ?? 1);
 
-            //ViewBag.CurrentUrl = Request.QueryString;
-
-            // TODO: разобраться с сохранением путей
             TempData["page"] = pageNumber;
-            ViewBag.IdOrder = String.IsNullOrEmpty(order) ? "IdAsc" : "";
-            ViewBag.DateOrder = order == "Date" ? "DateAsc" : "Date";
             TempData["order"] = order;
             TempData["published"] = published;
+
+            ViewBag.IdOrder = String.IsNullOrEmpty(order) ? "IdAsc" : "";
+            ViewBag.DateOrder = order == "Date" ? "DateAsc" : "Date";
 
             var result = _postRepository.Posts;
 

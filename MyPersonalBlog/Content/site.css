@@ -73,3 +73,9 @@ input[type="checkbox"]
 {
     margin-right: 20px;
 }
+
+.empty-list-content
+{
+    min-height: 300px;
+    text-align: center;
+}

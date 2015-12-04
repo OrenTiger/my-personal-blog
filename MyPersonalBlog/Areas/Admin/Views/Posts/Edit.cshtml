@@ -2,7 +2,7 @@
 @model Post
 
 @{
-    
+    ViewBag.Title = "Пост - Редактирование";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,7 +10,7 @@
 
 @using (Html.BeginForm("Save", "Posts", FormMethod.Post, new { role = "form", @class = "form" }))
 {
-    @Html.ValidationSummary();
+    @Html.ValidationSummary()
     
     @Html.HiddenFor(m => m.Id)
 
@@ -42,4 +42,5 @@
 
     <button type="submit" class="btn btn-success">Сохранить</button>
     <a href="@Url.Action("List", "Posts", new { page = TempData["page"], order = TempData["order"], published = TempData["published"] })" class="btn btn-warning">Назад</a>       
+    TempData.Keep();
 }

@@ -10,6 +10,7 @@ using MyPersonalBlog.Controllers;
 
 namespace MyPersonalBlog.Tests
 {
+    // TODO: Добавить тестовые методы (аналогично AdminCommentsTests)
     [TestClass]
     public class PostsTests
     {
