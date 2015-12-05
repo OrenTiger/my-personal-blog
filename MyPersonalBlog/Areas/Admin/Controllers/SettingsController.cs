@@ -18,7 +18,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             _settingsProvider = settingsProvider;
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {            
             var settingsDictionary = _settingsProvider.GetAllSettings();
 
@@ -49,9 +49,27 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             return View("Edit", settings);
         }
 
-        public ActionResult Save()
-        {
-            return new HttpNotFoundResult();
+        [HttpPost]
+        public ActionResult Save(Settings settings)
+        {            
+            if (ModelState.IsValid)
+            {
+                var settingsDictionary = new Dictionary<string, string>();
+                Type type = typeof(Settings);
+                PropertyInfo[] properties = type.GetProperties();
+
+                foreach (var property in properties)
+                {
+                    settingsDictionary[property.Name] = property.GetValue(settings).ToString();
+                }
+
+                // TODO: Добавить проверку на ошибки и сообщение об успешном сохранении настройки
+                _settingsProvider.SaveAllSettings(settingsDictionary);
+
+                return RedirectToAction("Index", "Settings");
+            }
+
+            return View("Edit", settings);
         }
     }
 }

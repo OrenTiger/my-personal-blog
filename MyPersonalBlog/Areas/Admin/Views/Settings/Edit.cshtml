@@ -7,13 +7,42 @@
 
 <h2>Настройки</h2>
 
-<p>@Model.BlogTitle</p>
+@using (Html.BeginForm("Save", "Settings", FormMethod.Post, new { role = "form", @class = "form" }))
+{
+    @Html.ValidationSummary()
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.BlogTitle)
+        @Html.TextBoxFor(m => m.BlogTitle, new { @class = "form-control", maxlength = 100 })
+    </div>
 
-<p>@Model.ShortDescription</p>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ShortDescription)
+        @Html.TextBoxFor(m => m.ShortDescription, new { @class = "form-control", maxlength = 200 })
+    </div>
 
-<p>@Model.AdminEmail</p>
+    <div class="row">
+        <div class="form-group col-sm-5">
+            @Html.LabelFor(m => m.AdminEmail)
+            @Html.TextBoxFor(m => m.AdminEmail, new { @class = "form-control", maxlength = 254 })
+        </div>
+    </div>
 
-<p>@Model.PostListPageSize</p>
+    <div class="row">
+        <div class="form-group col-sm-5">
+            @Html.LabelFor(m => m.PostListPageSize)
+            @Html.TextBoxFor(m => m.PostListPageSize, new { @class = "form-control", maxlength = 2 })
+        </div>
+    </div>
 
-<p>@Model.PageSize</p>
+    <div class="row">
+        <div class="form-group col-sm-5">
+            @Html.LabelFor(m => m.PageSize)
+            @Html.TextBoxFor(m => m.PageSize, new { @class = "form-control", maxlength = 2 })
+        </div>
+    </div>
 
+    <br />
+    
+    <button type="submit" class="btn btn-success">Сохранить</button>
+}
