@@ -30,6 +30,9 @@ namespace MyPersonalBlog.Models
 
         public bool IsPublished { get; set; }
 
+        [Display(Name = "Количество просмотров")]
+        public int ViewsCount { get; set; }
+
         public virtual ICollection<Tag> Tags { get; set; }
 
         public ICollection<Comment> Comments { get; set; }

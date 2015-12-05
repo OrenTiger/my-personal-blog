@@ -16,8 +16,21 @@ namespace MyPersonalBlog.Infrastructure
 
             var routeAction = (string)routeData.Values["action"];
             var routeControl = (string)routeData.Values["controller"];
+            bool returnActive = false;
 
-            var returnActive = action == routeAction && controller == routeControl; 
+
+            if (action == null)
+            {
+                returnActive = controller == routeControl;
+            }
+            else if (controller == null)
+            {
+                returnActive = action == routeAction;
+            }
+            else
+            {
+                returnActive = action == routeAction && controller == routeControl;
+            }
 
             return returnActive ? "active" : string.Empty;
         }

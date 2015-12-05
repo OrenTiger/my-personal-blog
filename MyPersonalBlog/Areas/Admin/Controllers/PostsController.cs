@@ -11,20 +11,24 @@ using PagedList;
 
 namespace MyPersonalBlog.Areas.Admin.Controllers
 {
+    // Написать тесты для контроллера
     [Authorize]
     public class PostsController : Controller
     {
         private IPostRepository _postRepository;
         private ITagRepository _tagRepository;
-        
-        // TODO: Сделать возможность установки количества постов на страницу в админке
+        private ISettingsProvider _settingsProvider;
+                
         public int PageSize { get; set; }
 
-        public PostsController(IPostRepository postRepository, ITagRepository tagRepository)
+        public PostsController(IPostRepository postRepository, ITagRepository tagRepository, ISettingsProvider settingsProvider)
         {
             _postRepository = postRepository;
             _tagRepository = tagRepository;
-            PageSize = 5;
+            _settingsProvider = settingsProvider;
+            
+            PageSize = _settingsProvider.GetSetting<int>("PageSize");
+            PageSize = PageSize == 0 ? 7 : PageSize;
         }
 
         public ViewResult List(int? page, string order, string published)

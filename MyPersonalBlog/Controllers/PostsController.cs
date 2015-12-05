@@ -8,18 +8,14 @@ using MyPersonalBlog.Repositories;
 using System.Data.Entity;
 using MyPersonalBlog.Infrastructure;
 using PagedList;
-using Ninject;
 
 namespace MyPersonalBlog.Controllers
 {    
     public class PostsController : Controller
     {
         private IPostRepository _postRepository;
-
-        [Inject]
-        private ISettingsProvider _settings { get; set; }
+        private ISettingsProvider _settings;
         
-        // TODO: Сделать возможность установки количества постов на страницу в админке
         public int PageSize { get; set; }
 
         public PostsController(IPostRepository postRepository, ISettingsProvider settingsProvider)
@@ -27,7 +23,6 @@ namespace MyPersonalBlog.Controllers
             _postRepository = postRepository;
             _settings = settingsProvider;
 
-            //_settings.SetSetting<int>("PostListPageSize", 1);
             PageSize = _settings.GetSetting<int>("PostListPageSize");
             PageSize = PageSize == 0 ? 5 : PageSize;
         }
@@ -50,6 +45,8 @@ namespace MyPersonalBlog.Controllers
                 
             if (result != null && result.IsPublished == true)
             {
+                result.ViewsCount++;
+                _postRepository.Save(result);
                 return View("Detailed", result);
             }
 
