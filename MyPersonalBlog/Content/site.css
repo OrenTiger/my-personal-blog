@@ -79,3 +79,18 @@ input[type="checkbox"]
     min-height: 300px;
     text-align: center;
 }
+
+#toTop
+{
+    z-index: 3;
+    position: fixed;
+    bottom: 29px;
+    left: 15px;
+    cursor: pointer;
+    display: none;
+}
+
+#toTop .glyphicon
+{ 
+    margin-right: 5px;
+}
