@@ -9,6 +9,7 @@ using MyPersonalBlog.Repositories;
 
 namespace MyPersonalBlog.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CommentsController : Controller
     {
         ICommentRepository _commentRepository;

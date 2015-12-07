@@ -90,7 +90,12 @@ input[type="checkbox"]
     display: none;
 }
 
-#toTop .glyphicon
+a .glyphicon
 { 
     margin-right: 5px;
+}
+
+h2 a:hover
+{
+    text-decoration: none;
 }

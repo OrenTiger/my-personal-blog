@@ -9,6 +9,7 @@ using System.Reflection;
 
 namespace MyPersonalBlog.Areas.Admin.Controllers
 {
+    [Authorize]    
     public class SettingsController : Controller
     {
         ISettingsProvider _settingsProvider;

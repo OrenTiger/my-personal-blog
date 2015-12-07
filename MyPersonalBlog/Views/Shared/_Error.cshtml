@@ -1,0 +1,18 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    
+    if (ViewBag.HttpCode == 404)
+    {
+        ViewBag.HttpCodeDescription = "Запрашиваемая страница не найдена";
+    }
+    else
+    {
+        ViewBag.HttpCodeDescription = "Ошибка выполнения запроса";
+    }
+}
+
+<div class="alert alert-danger">
+    @ViewBag.HttpCodeDescription
+</div>

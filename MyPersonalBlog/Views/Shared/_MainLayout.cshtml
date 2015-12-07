@@ -51,7 +51,7 @@
                         </div>                                               
                     }
                     <hr />
-                    @Html.Action("List", "Tags")
+                    @Html.Action("List", "Tags", new { area = "" })
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
 
     <script type="text/javascript">
     $(document).ready(function () {
-        $('body').append('<div id="toTop" class="btn btn-info"><i class="glyphicon glyphicon-chevron-up"></i>Вверх</div>');
+        $('body').append('<div id="toTop" class="btn btn-info"><i class="glyphicon glyphicon-chevron-up"></i></div>');
         $(window).scroll(function () {
             if ($(this).scrollTop() != 0) {
                 $('#toTop').fadeIn();

@@ -8,7 +8,7 @@
     <div class="container">
 
         <header class="jumbotron">
-            <h2>My Personal Blog</h2>
+            <h2><a href="@Url.Action("List", "Posts", new { area = "Admin" })">My Personal Blog</a></h2>
             <p>Admin panel (in developing...)</p>
             @Html.ActionLink("Главная", "Index", "Posts", new { area = "" }, null)
         </header>
@@ -26,10 +26,11 @@
                     </div>
                     <div class="collapse navbar-collapse" id="user-menu">
                         <ul class="nav navbar-nav">
-                            <li class="@Html.IsActive("List", "Posts")"><a href="@Url.Action("List", "Posts", new { area = "Admin" })"><span class="glyphicon glyphicon-list-alt"></span> Посты</a></li>
-                            <li class="@Html.IsActive("List", "Comments")"><a href="@Url.Action("List", "Comments")"><span class="glyphicon glyphicon-comment"></span> Комментарии</a></li>
-                            <li class="@Html.IsActive("Index", "Settings")"><a href="@Url.Action("Index", "Settings")"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
-                            <li><a href="@Url.Action("SignOut", "Login")"><span class="glyphicon glyphicon-log-out"></span> Выход</a></li>
+                            <li class="@Html.IsActive("List", "Posts")"><a href="@Url.Action("List", "Posts", new { area = "Admin" })"><span class="glyphicon glyphicon-list-alt"></span>Посты</a></li>
+                            <li class="@Html.IsActive("List", "Comments")"><a href="@Url.Action("List", "Comments")"><span class="glyphicon glyphicon-comment"></span>Комментарии</a></li>
+                            <li class="@Html.IsActive("Index", "Settings")"><a href="@Url.Action("Index", "Settings")"><span class="glyphicon glyphicon-cog"></span>Настройки</a></li>
+                            <li><a href="~/Manage/Elmah" target="_blank"><span class="glyphicon glyphicon-list-alt"></span>Лог</a></li>
+                            <li><a href="@Url.Action("SignOut", "Login")"><span class="glyphicon glyphicon-log-out"></span>Выход</a></li>
                         </ul>
                     </div>
                 </div>

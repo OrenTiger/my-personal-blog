@@ -42,7 +42,7 @@ namespace MyPersonalBlog.Controllers
         public ActionResult View(int id)
         {
             var result = _postRepository.GetById(id);
-                
+
             if (result != null && result.IsPublished == true)
             {
                 result.ViewsCount++;
@@ -50,7 +50,8 @@ namespace MyPersonalBlog.Controllers
                 return View("Detailed", result);
             }
 
-            return new HttpNotFoundResult();
+            ViewBag.HttpCode = 404;
+            return View("_Error");
         }
     }
 }
