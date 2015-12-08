@@ -12,6 +12,7 @@
         <p class="lead">Введите учетные данные:</p>
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary()
 
             <div class="row">

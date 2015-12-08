@@ -43,6 +43,10 @@
       <HintPath>..\packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
@@ -188,12 +192,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Abstract\IHashingProvider.cs" />
     <Compile Include="Infrastructure\Abstract\ISettingsProvider.cs" />
     <Compile Include="Infrastructure\Binders\DateTimeModelBinder.cs" />
     <Compile Include="Infrastructure\Concrete\CurrentUrlHtmlHelper.cs" />
     <Compile Include="Infrastructure\Concrete\FormAuthProvider.cs" />
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
-    <Compile Include="Infrastructure\Concrete\Hashing.cs" />
+    <Compile Include="Infrastructure\Concrete\HashingProvider.cs" />
     <Compile Include="Infrastructure\Concrete\IsActiveHtmlHelper.cs" />
     <Compile Include="Infrastructure\Concrete\IsSetParameterHtmlHelper.cs" />
     <Compile Include="Infrastructure\Concrete\SettingsProvider.cs" />
@@ -228,7 +233,7 @@
     <Content Include="Views\Shared\_HeadPartial.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\Detailed.cshtml" />
-    <Content Include="Views\Shared\_CommentForm.cshtml" />
+    <Content Include="Views\Posts\_CommentForm.cshtml" />
     <Content Include="Views\Home\Contacts.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\SearchResult.cshtml" />

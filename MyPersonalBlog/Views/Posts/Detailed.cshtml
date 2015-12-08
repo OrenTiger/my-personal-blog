@@ -25,7 +25,7 @@
 <h4 class="text-muted">Комментарии</h4>
 
 <div class="comments">
-    @foreach (var comment in Model.Comments)
+    @foreach (var comment in Model.Comments.Where(c => c.IsApproved))
     {
         <span class="glyphicon glyphicon-user usericon"></span><span class="text-info username">@comment.Username</span><time class="text-muted small">@comment.CreateDate.ToString("dd/MM/yyyy HH:mm")</time>
         <p>@comment.Text</p>
@@ -38,4 +38,6 @@
     }
 </div>
 
-@Html.Partial("_CommentForm", new Comment(), new ViewDataDictionary { { "PostId", ViewContext.RouteData.Values["id"] } })
+<div id="commentFormContainer">
+    @Html.Partial("_CommentForm", new Comment { PostId = Model.Id }, new ViewDataDictionary { { "PostId", ViewContext.RouteData.Values["id"] } })
+</div>

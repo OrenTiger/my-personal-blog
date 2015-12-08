@@ -8,7 +8,7 @@ using System.Web.Configuration;
 namespace MyPersonalBlog.Infrastructure
 {
     public class SettingsProvider : ISettingsProvider
-    {
+    {        
         public T GetSetting<T>(string key)
         {
             var result = default(T);

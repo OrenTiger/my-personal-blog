@@ -112,8 +112,8 @@ namespace MyPersonalBlog.Tests
             // Действие - получаем отдельный пост
             var result = target.View(0);
 
-            // Утверждение - в результате метода возвращается код статуса "Not Found"
-            Assert.IsInstanceOfType(result, typeof(HttpNotFoundResult));
+            // Утверждение - в результате метода возвращается представление "_Error"
+            Assert.AreEqual("_Error", result.ViewName);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PagedList;
 using MyPersonalBlog.Models;
 using MyPersonalBlog.Repositories;
+using MyPersonalBlog.Infrastructure;
 
 namespace MyPersonalBlog.Areas.Admin.Controllers
 {
@@ -13,13 +14,17 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
     public class CommentsController : Controller
     {
         ICommentRepository _commentRepository;
+        ISettingsProvider _settingsProvider;
         public int PageSize { get; set; }
 
-        public CommentsController(ICommentRepository commentRepository)
+        public CommentsController(ICommentRepository commentRepository, ISettingsProvider settingsProvider)
         {
             _commentRepository = commentRepository;
-            PageSize = 3;
-        }
+            _settingsProvider = settingsProvider;
+            
+            PageSize = _settingsProvider.GetSetting<int>("PageSize");
+            PageSize = PageSize == 0 ? 7 : PageSize;
+        }        
 
         public ViewResult List(int? page, string order, string approved)
         {

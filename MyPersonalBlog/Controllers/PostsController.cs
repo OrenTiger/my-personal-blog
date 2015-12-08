@@ -39,12 +39,12 @@ namespace MyPersonalBlog.Controllers
             return View(result);
         }
 
-        public ActionResult View(int id)
+        public ViewResult View(int id)
         {
             var result = _postRepository.GetById(id);
 
             if (result != null && result.IsPublished == true)
-            {
+            {                
                 result.ViewsCount++;
                 _postRepository.Save(result);
                 return View("Detailed", result);

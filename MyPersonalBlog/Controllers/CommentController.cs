@@ -7,6 +7,7 @@ using MyPersonalBlog.Models;
 using MyPersonalBlog.Repositories;
 using System.Data.Entity;
 using MyPersonalBlog.Infrastructure;
+using CaptchaMvc.Attributes;
 
 namespace MyPersonalBlog.Controllers
 {
@@ -20,16 +21,20 @@ namespace MyPersonalBlog.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(Comment comment)
+        [ValidateAntiForgeryToken]
+        [CaptchaVerify("Капча указана неверно ")]
+        public PartialViewResult Save(Comment model)
         {
-            // TODO: Добавить проверку введеных данных на недопустимые знаки
             // TODO: Добавить капчу
             if (ModelState.IsValid)
             {
-                _commentRepository.Save(comment);
-                return Redirect(Request.UrlReferrer.ToString());
+                _commentRepository.Save(model);
+                ViewBag.IsCommentSuccess = true;
+                return PartialView("~/Views/Posts/_CommentForm.cshtml");
+                //return Redirect(Request.UrlReferrer.ToString());
             }
-            else return View();
+            
+            return PartialView("~/Views/Posts/_CommentForm.cshtml", model);
         }
     }
 }

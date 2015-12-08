@@ -20,10 +20,12 @@ namespace MyPersonalBlog.Repositories
 
         public Post GetById(int id)
         {
-            return _db.Posts
+            var result = _db.Posts
                 .Where(p => p.Id == id)
                 .Include(p => p.Comments)
                 .FirstOrDefault();
+
+            return result;
         }
 
         public void Save(Post post, int[] selectedTags)

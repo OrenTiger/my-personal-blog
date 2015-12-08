@@ -65,7 +65,8 @@ namespace MyPersonalBlog.Repositories
             db.Comments.Add(new Comment { Id = 3, Text = "Test Comment #3", CreateDate = DateTime.Now.AddMinutes(2), Username = "User 2", IsApproved = true, PostId = 1 });
             db.Comments.Add(new Comment { Id = 4, Text = "Test Comment #3", CreateDate = DateTime.Now.AddMinutes(3), Username = "User 4", IsApproved = true, PostId = 1 });
 
-            db.Admins.Add(new Admin { Login = "admin", Username = "Timur Basyrov", PasswordHash = Hashing.HashPassword("12345") });
+            HashingProvider hashing = new HashingProvider();
+            db.Admins.Add(new Admin { Login = "admin", Username = "Timur Basyrov", PasswordHash = hashing.HashPassword("12345") });
 
             db.SaveChanges();
             base.Seed(db);
