@@ -10,16 +10,6 @@ namespace MyPersonalBlog.Controllers
     {
         public ViewResult About()
         {
-            try
-            {
-                throw new Exception();
-                
-            }
-            catch (Exception ex)
-            {
-                Elmah.ErrorLog.GetDefault(System.Web.HttpContext.Current).Log(new Elmah.Error(ex));
-            }
-
             return View();
         }
 

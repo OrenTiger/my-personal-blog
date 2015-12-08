@@ -29,8 +29,6 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             Type type = typeof(Settings);
             PropertyInfo[] properties = type.GetProperties();
 
-            // TODO: Добавить обработку ошибок и error page (отдельную админскую error page с exception message)
-
             foreach (var property in properties)
             {
                 object temp = property.GetValue(settings);

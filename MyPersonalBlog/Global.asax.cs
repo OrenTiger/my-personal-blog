@@ -29,7 +29,9 @@ namespace MyPersonalBlog
             HttpContext httpContext = HttpContext.Current;
 
             // Для администратора отображаем стандартный вывод ошибки
-            if (httpContext.User.Identity.IsAuthenticated)
+            if (httpContext.User != null &&
+                httpContext.User.Identity != null && 
+                httpContext.User.Identity.IsAuthenticated)
             {
                 return;
             }

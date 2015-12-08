@@ -15,7 +15,7 @@ namespace MyPersonalBlog.Repositories
             }
         }
 
-        public void SaveAdmin(Admin admin)
+        public void Save(Admin admin)
         {
             if (admin.Id == 0)
             {
@@ -36,7 +36,7 @@ namespace MyPersonalBlog.Repositories
             _db.SaveChanges();
         }
 
-        public Admin DeleteAdmin(int adminId)
+        public Admin Delete(int adminId)
         {
             Admin _admin = _db.Admins.Find(adminId);
 

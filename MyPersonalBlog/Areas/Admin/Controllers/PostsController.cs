@@ -75,7 +75,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             Post post = new Post();
 
             ViewBag.ActionName = "Пост - Добавление";
-            ViewBag.Tags = _tagRepository.GetTags.ToList();
+            ViewBag.Tags = _tagRepository.Tags.ToList();
 
             return View("Edit", post);
         }
@@ -90,7 +90,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             }
 
             ViewBag.ActionName = "Пост - Редактирование";
-            ViewBag.Tags = _tagRepository.GetTags.ToList();
+            ViewBag.Tags = _tagRepository.Tags.ToList();
 
             return View(post);
         }
@@ -105,7 +105,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
                 return RedirectToAction("List", "Posts", new { page = TempData["page"], order = TempData["order"], published = TempData["published"] });
             }
 
-            ViewBag.Tags = _tagRepository.GetTags.ToList();
+            ViewBag.Tags = _tagRepository.Tags.ToList();
             return View(post);
         }
 

@@ -45,7 +45,7 @@ namespace MyPersonalBlog.Tests
             Mock<ITagRepository> mockTagRepository = new Mock<ITagRepository>();
 
             mockPostRepository.Setup(m => m.Posts).Returns(_posts);
-            mockTagRepository.Setup(m => m.GetTags).Returns(_tags);
+            mockTagRepository.Setup(m => m.Tags).Returns(_tags);
 
             // Организация - создание контроллера
             SearchController target = new SearchController(mockPostRepository.Object, mockTagRepository.Object);
@@ -68,7 +68,7 @@ namespace MyPersonalBlog.Tests
             Mock<ITagRepository> mockTagRepository = new Mock<ITagRepository>();
 
             mockPostRepository.Setup(m => m.Posts).Returns(_posts);
-            mockTagRepository.Setup(m => m.GetTags).Returns(_tags);
+            mockTagRepository.Setup(m => m.Tags).Returns(_tags);
 
             // Организация - создание контроллера
             SearchController target = new SearchController(mockPostRepository.Object, mockTagRepository.Object);

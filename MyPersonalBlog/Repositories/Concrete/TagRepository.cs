@@ -11,7 +11,7 @@ namespace MyPersonalBlog.Repositories
     {
         private BlogContext _db = new BlogContext();
 
-        public IEnumerable<Tag> GetTags
+        public IEnumerable<Tag> Tags
         {
             get
             {
@@ -19,19 +19,19 @@ namespace MyPersonalBlog.Repositories
             }
         }
 
-        public Tag GetTagById(int id)
+        public Tag GetById(int id)
         {
             return _db.Tags
                 .Where(t => t.Id == id)
                 .FirstOrDefault();
         }
 
-        public void SaveTag(Tag tag)
+        public void Save(Tag tag)
         {
             throw new NotImplementedException();
         }
 
-        public Tag DeleteTag(int tagId)
+        public Tag Delete(int tagId)
         {
             throw new NotImplementedException();
         }

@@ -22,7 +22,7 @@ namespace MyPersonalBlog.Controllers
         [OutputCache(Duration=300)]
         public PartialViewResult List()
         {
-            var tags = _tagRepository.GetTags.OrderBy(t => t.Name);
+            var tags = _tagRepository.Tags.OrderBy(t => t.Name);
             return PartialView(tags);
         }
     }

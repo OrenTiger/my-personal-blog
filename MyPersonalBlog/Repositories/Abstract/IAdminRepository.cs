@@ -7,8 +7,8 @@ namespace MyPersonalBlog.Repositories
     {
         IEnumerable<Admin> Admins { get; }
 
-        void SaveAdmin(Admin admin);
+        void Save(Admin admin);
 
-        Admin DeleteAdmin(int adminId);
+        Admin Delete(int adminId);
     }
 }

@@ -15,7 +15,7 @@ namespace MyPersonalBlog.Models
         public string Username { get; set; }
 
         [Required]
-        [MaxLength(32)]
+        [MaxLength(60)]
         public string PasswordHash { get; set; }
     }
 }

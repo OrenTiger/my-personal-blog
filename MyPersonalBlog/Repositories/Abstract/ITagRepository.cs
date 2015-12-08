@@ -5,12 +5,12 @@ namespace MyPersonalBlog.Repositories
 {
     public interface ITagRepository
     {
-        IEnumerable<Tag> GetTags { get; }
+        IEnumerable<Tag> Tags { get; }
 
-        Tag GetTagById(int id);
+        Tag GetById(int id);
 
-        void SaveTag(Tag post);
+        void Save(Tag post);
 
-        Tag DeleteTag(int tagId);
+        Tag Delete(int tagId);
     }
 }

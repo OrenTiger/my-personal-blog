@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using MyPersonalBlog.Models;
+using MyPersonalBlog.Infrastructure;
 
 namespace MyPersonalBlog.Repositories
 {
@@ -64,9 +65,7 @@ namespace MyPersonalBlog.Repositories
             db.Comments.Add(new Comment { Id = 3, Text = "Test Comment #3", CreateDate = DateTime.Now.AddMinutes(2), Username = "User 2", IsApproved = true, PostId = 1 });
             db.Comments.Add(new Comment { Id = 4, Text = "Test Comment #3", CreateDate = DateTime.Now.AddMinutes(3), Username = "User 4", IsApproved = true, PostId = 1 });
 
-            // TODO: Добавить функцию BCrypt-хэширования паролей
-            // https://cmatskas.com/a-simple-net-password-hashing-implementation-using-bcrypt/
-            db.Admins.Add(new Admin { Login = "admin", Username = "Timur Basyrov", PasswordHash = "12345" });
+            db.Admins.Add(new Admin { Login = "admin", Username = "Timur Basyrov", PasswordHash = Hashing.HashPassword("12345") });
 
             db.SaveChanges();
             base.Seed(db);

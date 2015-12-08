@@ -5,10 +5,7 @@ namespace MyPersonalBlog.Repositories
 {
     public interface ICommentRepository
     {
-        IEnumerable<Comment> Comments
-        {
-            get;
-        }
+        IEnumerable<Comment> Comments { get; }
 
         Comment GetById(int id);
 

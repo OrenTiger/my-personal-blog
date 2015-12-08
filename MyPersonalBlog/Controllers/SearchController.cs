@@ -80,7 +80,7 @@ namespace MyPersonalBlog.Controllers
             tag = tag ?? 0;
 
             var searchResult = _tagRepository
-                .GetTags
+                .Tags
                 .Where(t => t.Id == tag)
                 .SelectMany(t => t.Posts)
                 .Where(p => p.IsPublished == true);
