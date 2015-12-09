@@ -9,8 +9,6 @@
 
         <header class="jumbotron">
             <h2><a href="@Url.Action("List", "Posts", new { area = "Admin" })">My Personal Blog</a></h2>
-            <p>Admin panel (in developing...)</p>
-            @Html.ActionLink("Главная", "Index", "Posts", new { area = "" }, null)
         </header>
 
         @if (User.Identity.IsAuthenticated)

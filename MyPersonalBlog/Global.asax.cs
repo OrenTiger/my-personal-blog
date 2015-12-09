@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Data.Entity;
+using System.Web.Optimization;
 using MyPersonalBlog.Repositories;
 using MyPersonalBlog.Infrastructure;
 using MyPersonalBlog.Controllers;
@@ -20,8 +21,7 @@ namespace MyPersonalBlog
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ModelBinders.Binders.Add(typeof(DateTime), new DateTimeModelBinder());
-            //TODO: Добавить bundl'ы
-            //TODO: Скомпилить bootstrap с нужными частями на http://getbootstrap.com/customize/
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         protected void Application_Error(object sender, EventArgs e)

@@ -25,13 +25,11 @@ namespace MyPersonalBlog.Controllers
         [CaptchaVerify("Капча указана неверно ")]
         public PartialViewResult Save(Comment model)
         {
-            // TODO: Добавить капчу
             if (ModelState.IsValid)
             {
                 _commentRepository.Save(model);
                 ViewBag.IsCommentSuccess = true;
                 return PartialView("~/Views/Posts/_CommentForm.cshtml");
-                //return Redirect(Request.UrlReferrer.ToString());
             }
             
             return PartialView("~/Views/Posts/_CommentForm.cshtml", model);
