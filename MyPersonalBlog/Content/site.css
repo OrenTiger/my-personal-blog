@@ -99,3 +99,8 @@ h2 a:hover
 {
     text-decoration: none;
 }
+
+.table-nonfluid
+{
+    width: auto;
+}

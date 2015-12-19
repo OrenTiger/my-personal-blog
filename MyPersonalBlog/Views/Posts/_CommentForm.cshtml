@@ -17,7 +17,7 @@ else
 {
     using (Ajax.BeginForm("Save", "Comment", null, ajaxOpts, new { role = "form" }))
     { 
-        <h4>Что вы думаете?</h4>
+        <h4>Оставить комментарий:</h4>
         <div class="form-group comment-form">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(null, new { @class = "alert alert-danger" })

@@ -9,7 +9,8 @@ namespace MyPersonalBlog.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50, ErrorMessage = "Превышена максимальная длина (50 символов)")]
+        [MaxLength(30, ErrorMessage = "Превышена максимальная длина (30 символов)")]
+        [Display(Name = "Тэг")]
         public string Name { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }

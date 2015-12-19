@@ -23,7 +23,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]        
         public ActionResult SignIn(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)

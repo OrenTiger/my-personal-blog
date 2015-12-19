@@ -9,8 +9,8 @@ namespace MyPersonalBlog.Repositories
 
         Tag GetById(int id);
 
-        void Save(Tag post);
+        void Save(Tag tag);
 
-        Tag Delete(int tagId);
+        void Delete(int id);
     }
 }

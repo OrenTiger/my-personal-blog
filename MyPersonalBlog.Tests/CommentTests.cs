@@ -37,7 +37,8 @@ namespace MyPersonalBlog.Tests
             mock.Verify(m => m.Save(comment));
 
             // Утверждение - проверка типа результата метода
-            Assert.IsInstanceOfType(result, typeof(RedirectResult));
+            Assert.IsNull(((PartialViewResult)result).Model);
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
         }
 
         [TestMethod]
@@ -62,7 +63,8 @@ namespace MyPersonalBlog.Tests
             mock.Verify(m => m.Save(It.IsAny<Comment>()), Times.Never());
 
             // Утверждение - проверка типа результата метода
-            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            Assert.IsNotNull(((PartialViewResult)result).Model);
+            Assert.IsInstanceOfType(result, typeof(PartialViewResult));
         }
     }
 }
