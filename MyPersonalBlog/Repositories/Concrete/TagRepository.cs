@@ -28,12 +28,32 @@ namespace MyPersonalBlog.Repositories
 
         public void Save(Tag tag)
         {
-            throw new NotImplementedException();
+            if (tag.Id == 0)
+            {
+                _db.Tags.Add(tag);
+            }
+            else
+            {
+                Tag dbEntry = _db.Tags.Find(tag.Id);
+
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = tag.Name;
+                }
+            }
+
+            _db.SaveChanges();
         }
 
-        public Tag Delete(int tagId)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Tag dbEntry = _db.Tags.Find(id);
+
+            if (dbEntry != null)
+            {
+                _db.Tags.Remove(dbEntry);
+                _db.SaveChanges();
+            }
         }
     }
 }

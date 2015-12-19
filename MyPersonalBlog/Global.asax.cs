@@ -7,7 +7,6 @@ using System.Web.Routing;
 using System.Data.Entity;
 using System.Web.Optimization;
 using MyPersonalBlog.Repositories;
-using MyPersonalBlog.Infrastructure;
 using MyPersonalBlog.Controllers;
 using Elmah;
 
@@ -20,7 +19,6 @@ namespace MyPersonalBlog
             Database.SetInitializer(new BlogDbInitializer());
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ModelBinders.Binders.Add(typeof(DateTime), new DateTimeModelBinder());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 

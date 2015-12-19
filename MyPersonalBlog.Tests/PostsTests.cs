@@ -11,7 +11,6 @@ using MyPersonalBlog.Infrastructure;
 
 namespace MyPersonalBlog.Tests
 {
-    // TODO: Добавить тестовые методы (аналогично AdminCommentsTests)
     [TestClass]
     public class PostsTests
     {
