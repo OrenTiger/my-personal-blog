@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using MyPersonalBlog.Infrastructure;
 using MyPersonalBlog.ViewModels;
 
@@ -17,8 +18,12 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             _authProvider = authProvider;
         }
 
-        public ViewResult SignIn()
-        {
+        public ActionResult SignIn()        
+        {            
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("List", "Posts", new { area = "Admin" });
+            }
             return View();
         }
 

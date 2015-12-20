@@ -17,6 +17,7 @@ namespace MyPersonalBlog.Tests
     public class AdminCommentTests
     {
         private IList<Comment> _comments;
+        private Settings _settings;
         private Mock<ICommentRepository> _mock;
         private Mock<ISettingsProvider> _mockSettingsProvider;
         private CommentsController _target;
@@ -31,6 +32,14 @@ namespace MyPersonalBlog.Tests
                 new Comment { Id = 4, Username = "User 4", Text = "Comment 4", CreateDate = DateTime.Now.AddMinutes(3), IsApproved = true, PostId = 1 },
                 new Comment { Id = 5, Username = "User 5", Text = "Comment 5", CreateDate = DateTime.Now.AddMinutes(4), IsApproved = true, PostId = 1 }
             };
+
+            _settings = new Settings
+            {
+                Id = 1,
+                PageSize = 5,
+                PostListPageSize = 5,
+                AdminEmail = "admin@yellowduckblog.com"
+            };
         }
 
         [TestInitialize]
@@ -38,15 +47,19 @@ namespace MyPersonalBlog.Tests
         {
             // Организация - создание имитированного хранилища
             _mock = new Mock<ICommentRepository>();
+            
+            // Организация - создание имитированного поставщика настроек
             _mockSettingsProvider = new Mock<ISettingsProvider>();
+            _mockSettingsProvider.Setup(s => s.GetSettings()).Returns(_settings);
 
-            _target = new CommentsController(_mock.Object, _mockSettingsProvider.Object);
+            // Организация - создание контроллера
+            _target = new CommentsController(_mock.Object, _mockSettingsProvider.Object);            
         }
 
         [TestMethod]
         public void Can_Get_Comment_By_Id()
         {
-            // Организация
+            // Организация - настройка имитированного хранилища
             _mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _comments.Where(c => c.Id == id).SingleOrDefault());
 
             // Действие - получаем отдельный комментарий
@@ -61,7 +74,7 @@ namespace MyPersonalBlog.Tests
         [TestMethod]
         public void Can_Not_Get_Comment_By_Not_Existing_Id()
         {
-            // Организация
+            // Организация - настройка имитированного хранилища
             _mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => _comments.Where(c => c.Id == id).SingleOrDefault());
 
             // Действие - получаем отдельный комментарий
@@ -75,7 +88,7 @@ namespace MyPersonalBlog.Tests
         [TestMethod]
         public void Can_Get_All_Not_Approved_Comments()
         {
-            // Организация
+            // Организация - настройка имитированного хранилища
             _mock.Setup(m => m.Comments).Returns(_comments.OrderByDescending(c => c.CreateDate));
 
             // Действие - получаем неопубликованные комментарии

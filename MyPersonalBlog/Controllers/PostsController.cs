@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyPersonalBlog.Models;
+using MyPersonalBlog.ViewModels;
 using MyPersonalBlog.Repositories;
-using System.Data.Entity;
 using MyPersonalBlog.Infrastructure;
 using PagedList;
 
@@ -23,8 +23,21 @@ namespace MyPersonalBlog.Controllers
             _postRepository = postRepository;
             _settings = settingsProvider;
 
-            PageSize = _settings.GetSetting<int>("PostListPageSize");
-            PageSize = PageSize == 0 ? 5 : PageSize;
+            PageSize = _settings.GetSettings().PostListPageSize;
+        }
+
+        public ViewResult Archive(int year, int month, int? page)
+        {
+            int pageNumber = (page ?? 1);
+
+            var result = _postRepository.Posts
+                .Where(p => p.IsPublished == true)
+                .Where(p => p.CreateDate.Year == year)
+                .Where(p => p.CreateDate.Month == month)
+                .OrderByDescending(p => p.Id)
+                .ToPagedList(pageNumber, PageSize);
+
+            return View("Index", result);
         }
 
         public ViewResult Index(int? page)
@@ -52,6 +65,24 @@ namespace MyPersonalBlog.Controllers
 
             ViewBag.HttpCode = 404;
             return View("_Error");
+        }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 900)]
+        public PartialViewResult ArchiveModule()
+        {
+            var results = (from post in _postRepository.Posts.Where(p => p.IsPublished)
+                           group post by post.CreateDate.Year into years
+                           select 
+                           new ArchivePostsViewModel
+                               {
+                                   Year = years.Key,
+                                   Months = years.GroupBy(m => m.CreateDate.Month).
+                                            Select(g => new { Month = g.Key, Count = g.Count() }).ToDictionary(t => t.Month, t => t.Count)
+                               }
+                           );
+
+            return PartialView("_Archive", results);
         }
     }
 }

@@ -7,9 +7,10 @@
 <body>
     <div class="container">
 
-        <header class="jumbotron">
-            <h2><a href="@Url.Action("List", "Posts", new { area = "Admin" })">My Personal Blog</a></h2>
-        </header>
+        <div class="jumbotron">
+            <h2>My Personal Blog</h2>
+            <h5>Записки разработчика</h5>
+        </div>
 
         @if (User.Identity.IsAuthenticated)
         {
@@ -36,10 +37,20 @@
             </nav>
         }
 
-        @RenderBody()
+        <div class="list-content">
+            @RenderBody()
+        </div>
 
-        <footer class="container-fluid text-center">
-            <p>footer block</p>
+        <br />
+        <footer class="container-fluid text-center footer">
+            <p>
+                &copy; 2015 Тимур Басыров | Powered by ASP.NET MVC 5
+                <div class="social-btns">
+                    <a class="facebook" target="_blank" href="https://www.facebook.com/timbasyrov"></a>
+                    <a class="github" target="_blank" href="https://github.com/OrenTiger"></a>
+                    <a class="linkedin" target="_blank" href="https://ru.linkedin.com/in/tbasyrov"></a>
+                </div>
+            </p>
         </footer>
     </div>
 </body>

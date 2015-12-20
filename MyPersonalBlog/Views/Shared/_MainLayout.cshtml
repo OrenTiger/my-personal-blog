@@ -1,7 +1,7 @@
 ﻿@using MyPersonalBlog.Infrastructure
 
-@{
-    ViewBag.Title = "My personal blog";
+@{    
+    ViewBag.Title = "My Personal Blog";
 }
 
 <!DOCTYPE html>
@@ -10,8 +10,10 @@
 @Html.Partial("_HeadPartial")
 <body>
     <div class="container">
+
         <div class="jumbotron">
             <h2>My Personal Blog</h2>
+            <h5>Записки разработчика</h5>
         </div>
 
         <nav class="navbar navbar-inverse">
@@ -46,33 +48,55 @@
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
                             </span>
-                        </div>                                               
+                        </div>
+                        <hr />
                     }
-                    <hr />
-                    @Html.Action("List", "Tags", new { area = "" })
+                    <div class="hidden-xs">
+                        @Html.Action("List", "Tags", new { area = "" })
+                        <hr />
+                    </div>
+                    <div class="hidden-xs">
+                        @Html.Action("ArchiveModule", "Posts", new { area = "" })
+                        <br />
+                    </div>
+                    <div class="hidden-xs">
+                        @Html.Partial("_Author")
+                        <br />
+                    </div>
                 </div>
             </div>
 
-        <footer class="container-fluid text-center">
-            <p>footer block</p>
+        <footer class="container-fluid text-center footer">
+            <p>
+                &copy; 2015 Тимур Басыров | Powered by ASP.NET MVC 5
+                <div class="social-btns">
+                    <a class="facebook" target="_blank" href="https://www.facebook.com/timbasyrov"></a>
+                    <a class="github" target="_blank" href="https://github.com/OrenTiger"></a>
+                    <a class="linkedin" target="_blank" href="https://ru.linkedin.com/in/tbasyrov"></a>
+                </div>
+            </p>
         </footer>
     </div>
 
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('body').append('<div id="toTop" class="btn btn-info"><i class="glyphicon glyphicon-chevron-up"></i></div>');
-        $(window).scroll(function () {
-            if ($(this).scrollTop() != 0) {
-                $('#toTop').fadeIn();
-            } else {
-                $('#toTop').fadeOut();
-            }
+
+        $(document).ready(function () {
+
+            $('body').append('<div id="toTop" class="btn btn-info"><i class="glyphicon glyphicon-chevron-up"></i></div>');
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() != 0) {
+                    $('#toTop').fadeIn();
+                } else {
+                    $('#toTop').fadeOut();
+                }
+            });
+
+            $('#toTop').click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 600);
+                return false;
+            });
         });
-        $('#toTop').click(function () {
-            $("html, body").animate({ scrollTop: 0 }, 600);
-            return false;
-        });
-    });
     </script>
 
 </body>

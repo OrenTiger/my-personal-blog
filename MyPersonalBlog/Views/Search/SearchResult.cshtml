@@ -69,13 +69,8 @@ else
         }
         <hr />
     }
+    
+    @Html.PagedListPager(Model.SearchResults, page => Url.Action("", "Search", new { query = Model.SearchQuery, order = Model.Order, page }))
 
-    if (Model.TagId != null)
-    {
-        @Html.PagedListPager(Model.SearchResults, page => Url.Action("", "Search", new { Model.SearchQuery, order = Model.Order, page }))
-    }
-    else
-    {
-        @Html.PagedListPager(Model.SearchResults, page => Url.Action("", "Search", new { Model.SearchQuery, order = Model.Order, page }))
-    }
+    <br />
 }

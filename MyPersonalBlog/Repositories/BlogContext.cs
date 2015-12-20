@@ -10,6 +10,7 @@ namespace MyPersonalBlog.Repositories
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Settings> Settings { get; set; }
 
         public BlogContext() : base("BlogContext")
         {

@@ -16,7 +16,7 @@ namespace MyPersonalBlog
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new BlogDbInitializer());
+            // Database.SetInitializer(new BlogDbInitializer());
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

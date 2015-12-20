@@ -22,8 +22,7 @@ namespace MyPersonalBlog.Areas.Admin.Controllers
             _tagRepository = tagRepository;
             _settingsProvider = settingsProvider;
 
-            PageSize = _settingsProvider.GetSetting<int>("PageSize");
-            PageSize = PageSize == 0 ? 7 : PageSize;
+            PageSize = _settingsProvider.GetSettings().PageSize;
         }
         
         public ViewResult List(int? page)
