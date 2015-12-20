@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MyPersonalBlog.Models;
+﻿using MyPersonalBlog.Models;
 using PagedList;
 
 namespace MyPersonalBlog.ViewModels

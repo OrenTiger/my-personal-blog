@@ -163,7 +163,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\facebook.png" />
     <Content Include="Content\images\github.png" />
-    <Content Include="Content\images\header-background.png" />
+    <Content Include="Content\images\header-background.jpg" />
     <Content Include="Content\images\linkedin.png" />
     <Content Include="Content\images\profile_foto.jpeg" />
     <Content Include="Content\site.css" />
