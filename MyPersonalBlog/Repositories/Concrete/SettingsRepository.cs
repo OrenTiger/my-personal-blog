@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using MyPersonalBlog.Models;
-using System.Data.Entity;
 
 namespace MyPersonalBlog.Repositories
 {

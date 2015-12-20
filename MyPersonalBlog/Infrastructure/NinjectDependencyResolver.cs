@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Ninject;
-using MyPersonalBlog.Models;
 using MyPersonalBlog.Repositories;
 
 namespace MyPersonalBlog.Infrastructure

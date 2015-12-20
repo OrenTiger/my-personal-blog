@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using MyPersonalBlog.Models;
 
 namespace MyPersonalBlog.Repositories
@@ -28,10 +27,6 @@ namespace MyPersonalBlog.Repositories
 
             // Реализация связи 1 : M для моделей Пост - Комментарий
             modelBuilder.Entity<Post>().HasMany(p => p.Comments).WithRequired(c => c.Post).HasForeignKey(c => c.PostId);
-
-            //modelBuilder.Entity<Comment>().HasRequired(c => c.Post)
-            //    .WithMany(p => p.Comments)
-            //    .HasForeignKey(c => c.PostId);
         }
     }
 }
