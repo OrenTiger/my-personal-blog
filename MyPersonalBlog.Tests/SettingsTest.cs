@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyPersonalBlog.Infrastructure;
-using MyPersonalBlog.Areas.Admin.Models;
+using MyPersonalBlog.Models;
 using MyPersonalBlog.Areas.Admin.Controllers;
 
 namespace MyPersonalBlog.Tests
@@ -13,27 +13,26 @@ namespace MyPersonalBlog.Tests
     [TestClass]
     public class SettingsTest
     {
-        private IDictionary<string, string> _settingsDictionary;
+        Settings _settings;
 
         public SettingsTest()
         {
-            _settingsDictionary = new Dictionary<string, string>
+            _settings = new Settings
             {
-                   { "BlogTitle", "My Personal Blog" },
-                   { "ShortDescription", "One more developer blog" },
-                   { "PostListPageSize", "5" },
-                   { "PageSize", "7" },
-                   { "AdminEmail", "admin@mypersonalblog.com" }
+                Id = 1,
+                PostListPageSize = 5,
+                PageSize = 7,
+                AdminEmail = "admin@mypersonalblog.com"
             };
         }
 
         [TestMethod]
-        public void Can_Get_All_Settings()
+        public void Can_Get_Settings()
         {
             // Организация - создание имитированного поставщика
             Mock<ISettingsProvider> mock = new Mock<ISettingsProvider>();
 
-            mock.Setup(s => s.GetAllSettings()).Returns(_settingsDictionary);
+            mock.Setup(s => s.GetSettings()).Returns(_settings);
 
             // Организация - создание контроллера
             SettingsController target = new SettingsController(mock.Object);
@@ -42,13 +41,12 @@ namespace MyPersonalBlog.Tests
             var result = (Settings)target.Index().Model;
             
             // Утверждение - значения настроек равны
-            Assert.AreEqual("My Personal Blog", result.BlogTitle);
             Assert.AreEqual(7, result.PageSize);
             Assert.AreEqual(5, result.PostListPageSize);
         }
 
         [TestMethod]
-        public void Can_Save_All_Settings()
+        public void Can_Save_Settings()
         {
             // Организация - создание имитированного поставщика
             Mock<ISettingsProvider> mock = new Mock<ISettingsProvider>();
@@ -56,7 +54,7 @@ namespace MyPersonalBlog.Tests
             // Организация - создание контроллера
             SettingsController target = new SettingsController(mock.Object);
 
-            Settings settings = new Settings { BlogTitle = "My Personal Blog", ShortDescription = "Description", PostListPageSize = 7, PageSize = 5, AdminEmail = "admin@mypersonalblog.com" };
+            Settings settings = new Settings { PostListPageSize = 7, PageSize = 5, AdminEmail = "admin@mypersonalblog.com" };
 
             // Действие - сохраняем все настройки
             ActionResult result = target.Save(settings);

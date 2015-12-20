@@ -23,6 +23,14 @@ namespace MyPersonalBlog
 
             routes.MapRoute(
                 name: null,
+                url: "Posts/{year}/{month}",
+                defaults: new { controller = "Posts", action = "Archive" },
+                constraints: new { year = @"\d+", month = @"\d+" },
+                namespaces: new string[] { "MyPersonalBlog.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: null,
                 url: "Search/{query}",
                 defaults: new { controller = "Search", action = "Search", query = UrlParameter.Optional },
                 namespaces: new string[] { "MyPersonalBlog.Controllers" }

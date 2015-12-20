@@ -20,8 +20,8 @@ namespace MyPersonalBlog.Controllers
         {
             _postRepository = postRepository;
             _tagRepository = tagRepository;
-            // TODO: Добавить получение PageSize из Settings
-            PageSize = 3;
+
+            PageSize = 5;
         }
 
         [HttpGet]

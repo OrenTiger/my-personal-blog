@@ -19,7 +19,7 @@ namespace MyPersonalBlog.Controllers
         }
 
         [ChildActionOnly]
-        [OutputCache(Duration=300)]
+        [OutputCache(Duration=3600)]
         public PartialViewResult List()
         {
             var tags = _tagRepository.Tags.OrderBy(t => t.Name);

@@ -13,7 +13,7 @@
 
 @if (Model.Count == 0)
 {
-    <div class="empty-list-content">
+    <div class="text-center">
         <h4 class="text-muted">Список комментариев пуст</h4>
     </div>
     
@@ -41,7 +41,7 @@
                 <td>@Html.SubstringText(comment.Text, 20)</td>
                 <td>@comment.CreateDate</td>
                 <td>@Html.SubstringText(comment.Post.Title, 20)</td>                
-                <td class="text-center">@Html.CheckBoxFor(p => comment.IsApproved, new { @class = "checkbox checkbox-inline", disabled = "disabled" })</td>
+                <td class="text-center">@Html.DisplayBool(comment.IsApproved)</td>
                 <td><a class="btn btn-success btn-sm" href="@Url.Action("Edit", "Comments", new { id = @comment.Id})"><span class="glyphicon glyphicon-edit"></span> Редактировать</a></td>
                 <td><a class="btn btn-info btn-sm" href="javascript:showComment(@comment.Id)"><span class="glyphicon glyphicon-eye-open"></span> Просмотреть</a></td>
                 <td><a class="btn btn-danger btn-sm" href="javascript:confirmDelete(@comment.Id)"><span class="glyphicon glyphicon-remove"></span> Удалить</a></td>

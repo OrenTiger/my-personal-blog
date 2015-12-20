@@ -33,9 +33,9 @@
     <PublishDatabaseSettings>
       <Objects>
         <ObjectGroup Name="BlogContext-Deployment" Order="1" xmlns="">
-          <Destination Path="Data Source=SQL5008.Smarterasp.net%3bInitial Catalog=DB_9EAF9D_blog%3bPersist Security Info=True%3bUser ID=DB_9EAF9D_blog_admin%3bPassword=h2qq4xnje5" />
+          <Destination Path="Data Source=SQL5008.Smarterasp.net%3bInitial Catalog=DB_9EAF9D_blog%3bPersist Security Info=True%3bUser ID=DB_9EAF9D_blog_admin%3bPassword=h2qq4xnje5%3bMultipleActiveResultSets=true%3b" />
           <Object Type="DbFullSql">
-            <PreSource Path="Data Source=%28localdb%29\v11.0%3bAttachDbFilename=|DataDirectory|\Blog.mdf%3bIntegrated Security=True" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <PreSource Path="Data Source=%28localdb%29\v11.0%3bAttachDbFilename=%27|DataDirectory|\Blog.mdf%27%3bIntegrated Security=True%3bMultipleActiveResultSets=true%3b" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
             <Source Path="obj\Debug\AutoScripts\BlogContext-Deployment_SchemaAndData.sql" Transacted="True" />
           </Object>
         </ObjectGroup>
@@ -161,6 +161,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\github.png" />
+    <Content Include="Content\images\header-background.png" />
+    <Content Include="Content\images\linkedin.png" />
+    <Content Include="Content\images\profile_foto.jpeg" />
     <Content Include="Content\site.css" />
     <Content Include="fav.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -216,7 +221,9 @@
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
-    <Compile Include="Areas\Admin\Models\Settings.cs" />
+    <Compile Include="Infrastructure\Concrete\DBSettingsProvider.cs" />
+    <Compile Include="Infrastructure\Helpers\DisplayBoolHtmlHelper.cs" />
+    <Compile Include="Models\Setting.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
@@ -228,19 +235,20 @@
     </Compile>
     <Compile Include="Infrastructure\Abstract\IHashingProvider.cs" />
     <Compile Include="Infrastructure\Abstract\ISettingsProvider.cs" />
-    <Compile Include="Infrastructure\Binders\DateTimeModelBinder.cs" />
-    <Compile Include="Infrastructure\Concrete\CurrentUrlHtmlHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\CurrentUrlHtmlHelper.cs" />
     <Compile Include="Infrastructure\Concrete\FormAuthProvider.cs" />
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\HashingProvider.cs" />
-    <Compile Include="Infrastructure\Concrete\IsActiveHtmlHelper.cs" />
-    <Compile Include="Infrastructure\Concrete\IsSetParameterHtmlHelper.cs" />
-    <Compile Include="Infrastructure\Concrete\SettingsProvider.cs" />
-    <Compile Include="Infrastructure\Concrete\SubstringTextHtmlHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\IsActiveHtmlHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\IsSetParameterHtmlHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\SubstringTextHtmlHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Repositories\Abstract\ISettingsRepository.cs" />
     <Compile Include="Repositories\Abstract\ITagRepository.cs" />
+    <Compile Include="Repositories\Concrete\SettingsRepository.cs" />
     <Compile Include="Repositories\Concrete\TagRepository.cs" />
+    <Compile Include="ViewModels\ArchivePostsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Repositories\Abstract\IAdminRepository.cs" />
@@ -263,7 +271,6 @@
     <Content Include="packages.config" />
     <Content Include="Areas\Admin\Views\Login\SignIn.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Shared\_HeadPartial.cshtml" />
@@ -274,6 +281,8 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\SearchResult.cshtml" />
     <Content Include="Views\Tags\List.cshtml" />
+    <Content Include="Views\Shared\_Archive.cshtml" />
+    <Content Include="Views\Shared\_Author.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -283,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="obj\" />
   </ItemGroup>
   <PropertyGroup>

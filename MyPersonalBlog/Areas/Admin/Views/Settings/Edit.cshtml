@@ -1,4 +1,4 @@
-﻿@model MyPersonalBlog.Areas.Admin.Models.Settings
+﻿@model MyPersonalBlog.Models.Settings
 
 @{
     ViewBag.Title = "Настройки";
@@ -11,20 +11,8 @@
 {
     @Html.ValidationSummary()
     
-    <div class="alert alert-danger">
-        Внимание: при сохранении настроек произойдёт перезапуск сайта.
-    </div>
+    @Html.HiddenFor(m => m.Id);
     
-    <div class="form-group">
-        @Html.LabelFor(m => m.BlogTitle)
-        @Html.TextBoxFor(m => m.BlogTitle, new { @class = "form-control", maxlength = 100 })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.ShortDescription)
-        @Html.TextBoxFor(m => m.ShortDescription, new { @class = "form-control", maxlength = 200 })
-    </div>
-
     <div class="row">
         <div class="form-group col-sm-5">
             @Html.LabelFor(m => m.AdminEmail)

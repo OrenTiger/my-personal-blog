@@ -1,4 +1,21 @@
-﻿.field-validation-error
+﻿body
+{
+    color: #6B6B6B;
+    font-size: 15px;
+}
+
+.jumbotron
+{
+    background-image:url("../Content/images/header-background.png");
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.wide img {
+  width:100%;
+}
+
+.field-validation-error
 {
     color: #ff0000;
 }
@@ -74,10 +91,9 @@ input[type="checkbox"]
     margin-right: 20px;
 }
 
-.empty-list-content
+.list-content
 {
     min-height: 300px;
-    text-align: center;
 }
 
 #toTop
@@ -103,4 +119,74 @@ h2 a:hover
 .table-nonfluid
 {
     width: auto;
+}
+
+.archive-item-group h5
+{
+    cursor: pointer;
+}
+
+.list-group-item
+{
+  overflow:hidden;  
+  position: relative;
+  display: block;
+  padding: 2px 20px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 0px solid #ddd;
+}
+
+.badge-info {
+  background-color: #269abc;
+}
+
+.footer
+{
+    padding: 10px 0 0 0;
+    background-color: #222;
+    font-size: 13px;
+    color: #777;
+    border-radius: 5px;
+}
+
+.github
+{
+    background-image: url("../Content/images/github.png");
+    background-repeat: no-repeat;
+}
+
+.linkedin
+{
+    background-image: url("../Content/images/linkedin.png");
+    background-repeat: no-repeat;
+}
+
+.facebook
+{
+    background-image: url("../Content/images/facebook.png");
+    background-repeat: no-repeat;
+}
+
+.social-btns a
+{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.profile-foto {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    vertical-align: top;
+    margin-bottom: 10px;    
+}
+
+.profile
+{
+    margin-left: 20px;
+    font-size: 12px;
 }

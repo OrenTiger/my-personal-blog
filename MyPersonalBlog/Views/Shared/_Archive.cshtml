@@ -1,0 +1,30 @@
+﻿@using MyPersonalBlog.ViewModels
+@using System.Globalization
+@model IEnumerable<ArchivePostsViewModel>
+
+<h4 class="text-info">Архив</h4>
+
+@foreach (var item in Model)
+{
+    <div class="archive-item-group">
+        <h5><span class="label label-info">@item.Year</span></h5>
+        <ul class="list-group small">
+            @foreach (var month in @item.Months)
+            {
+                <li class="list-group-item"><span class="badge badge-info">@month.Value</span><a href="~/Posts/@item.Year/@month.Key">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(@month.Key)</a></li>
+            }
+        </ul>
+</div>
+}
+
+<script>
+    $(document).ready(function(){
+
+        //$("ul").hide();
+
+        $("h5 span").click(function () {
+            $(this).parent().next().toggle();
+        });
+
+    });
+</script>

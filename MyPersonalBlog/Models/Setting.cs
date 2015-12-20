@@ -1,19 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyPersonalBlog.Areas.Admin.Models
+namespace MyPersonalBlog.Models
 {
     public class Settings
     {
-        [Required]
-        [Display(Name = "Название сайта")]
-        [StringLength(100, ErrorMessage = "Превышена максимальная длина (100 символов)")]
-        public string BlogTitle { get; set; }
-
-        [Required]
-        [Display(Name = "Короткое описание")]
-        [StringLength(200, ErrorMessage = "Превышена максимальная длина (200 символов)")]
-        public string ShortDescription { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Range(1, 10, ErrorMessage = "Укажите значение от 1 до 10")]
@@ -22,7 +14,7 @@ namespace MyPersonalBlog.Areas.Admin.Models
 
         [Required]
         [Range(1, 50, ErrorMessage = "Укажите значение от 1 до 50")]
-        [Display(Name = "Количество записей на страницу")]
+        [Display(Name = "Количество записей в таблице на страницу")]
         public int PageSize { get; set; }
 
         [Required]
