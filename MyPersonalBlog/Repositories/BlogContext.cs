@@ -10,6 +10,7 @@ namespace MyPersonalBlog.Repositories
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Settings> Settings { get; set; }
+        public DbSet<Like> Likes { get; set; }
 
         public BlogContext() : base("BlogContext")
         {
@@ -27,6 +28,9 @@ namespace MyPersonalBlog.Repositories
 
             // Реализация связи 1 : M для моделей Пост - Комментарий
             modelBuilder.Entity<Post>().HasMany(p => p.Comments).WithRequired(c => c.Post).HasForeignKey(c => c.PostId);
+
+            // Реализация связи 1 : M для моделей Комментарий - Лайк
+            modelBuilder.Entity<Comment>().HasMany(c => c.Likes).WithRequired(l => l.Comment).HasForeignKey(l => l.CommentId);
         }
     }
 }

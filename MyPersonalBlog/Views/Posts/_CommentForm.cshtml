@@ -1,8 +1,12 @@
 ﻿@using CaptchaMvc.HtmlHelpers
-@model MyPersonalBlog.Models.Comment
+@using MyPersonalBlog.Models;
+@using MyPersonalBlog.Infrastructure;
+@model Comment
 
 @{
     AjaxOptions ajaxOpts = new AjaxOptions { UpdateTargetId = "commentFormContainer" };
+    OAuthUser oAuthUser = Session["oAuthUser"] != null ? (OAuthUser)Session["oAuthUser"] : null;
+    //OAuthUser oAuthUser = ViewBag.oAuthIUser;
 }
 
 @if (ViewBag.IsCommentSuccess == true)
@@ -15,30 +19,57 @@
 }
 else
 {
-    using (Ajax.BeginForm("Save", "Comment", null, ajaxOpts, new { role = "form" }))
+    using (Ajax.BeginForm(oAuthUser == null ? "Save" : "SaveWithoutCaptcha", "Comment", null, ajaxOpts, new { role = "form" }))
     { 
-        <h4>Оставить комментарий:</h4>
+        <div class="row">
+            <h4 class="col-sm-6">Оставить комментарий:</h4>
+            @if (oAuthUser == null)
+            { 
+                <h5 class="col-sm-6 text-right">
+                    <a href="@Url.Action("SignIn", "OAuth", new { returnToUrl = Url.Current(new { }), provider = "vk" })" title="Оставить комментарий, используя ВК"><img src="~/Content/images/vk_32.png" /></a>
+                    <a href="@Url.Action("SignIn", "OAuth", new { returnToUrl = Url.Current(new { }), provider = "google" })" title="Оставить комментарий, используя G+"><img src="~/Content/images/gplus_32.png" /></a>
+                </h5>
+            }
+        </div>
         <div class="form-group comment-form">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(null, new { @class = "alert alert-danger" })
 
             @Html.HiddenFor(m => m.PostId)
 
-            <div class="form-group">
-                <label>Ваше имя:</label>
-                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
-            </div>
+            @if (oAuthUser != null)
+            {
+                <div>
+                    <img src="@oAuthUser.ProfilePhoto" class="oauth-profile-foto" alt="profile-foto"/>
+                    @(oAuthUser.Provider == "vk" ? Html.Raw("<img src=\"/Content/images/vk_20.png\"/>") : Html.Raw("<img src=\"/Content/images/gplus_20.png\"/>"))
+                    <br />
+                    @Html.HiddenFor(m => m.Username, new { Value = oAuthUser.Name })
+                    <span class="text-info small">@oAuthUser.Name</span>
+                    <br />
+                    @Html.ActionLink("Выйти", "SignOut", "OAuth", null, new { @class = "small" })
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label>Ваше имя:</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                </div>
+            }
             <div class="form-group">
                 <label>Комментарий:</label>
                 @Html.TextAreaFor(m => m.Text, new { @class = "form-control", rows = "7" })
             </div>
-            <div class="form-group">
-                @{
-                    var captcha = Html.Captcha("Обновить", "Введите текст", 5, "Капча должна быть указана", false);
-                }
-                @captcha
-                @Html.ValidationMessage(captcha.BuildInfo.InputElementId)
-            </div>
+            @if (oAuthUser == null)
+            { 
+                <div class="form-group">
+                    @{
+                        var captcha = Html.Captcha("Обновить", "Введите текст", 5, "Капча должна быть указана", false);
+                    }
+                    @captcha
+                    @Html.ValidationMessage(captcha.BuildInfo.InputElementId)
+                </div>
+            }
             <button type="submit" class="btn btn-default">Отправить</button>
         </div>
     }

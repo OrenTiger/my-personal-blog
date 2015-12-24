@@ -96,6 +96,10 @@
                 $("html, body").animate({ scrollTop: 0 }, 600);
                 return false;
             });
+
+            $(document).ajaxError(function (evt, jqXHR) {
+                alert('HTTP ERROR: ' + jqXHR.status);
+            });
         });
     </script>
 

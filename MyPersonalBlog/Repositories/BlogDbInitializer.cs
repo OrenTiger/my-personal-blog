@@ -92,6 +92,8 @@ namespace MyPersonalBlog.Repositories
             db.Comments.Add(new Comment { Id = 2, Text = "Test Comment #2", CreateDate = DateTime.Now.AddMinutes(1), Username = "User 2", IsApproved = false, PostId = 1 });
             db.Comments.Add(new Comment { Id = 3, Text = "Test Comment #3", CreateDate = DateTime.Now.AddMinutes(2), Username = "User 2", IsApproved = true, PostId = 1 });
             db.Comments.Add(new Comment { Id = 4, Text = "Test Comment #3", CreateDate = DateTime.Now.AddMinutes(3), Username = "User 4", IsApproved = true, PostId = 1 });
+            db.Comments.Add(new Comment { Id = 5, Text = "Test Comment", CreateDate = DateTime.Now.AddMinutes(3), Username = "Test User", IsApproved = true, PostId = 12 });
+            db.Comments.Add(new Comment { Id = 6, Text = "Test Comment #2", CreateDate = DateTime.Now.AddMinutes(5), Username = "Test User #2", IsApproved = true, PostId = 12 });
 
             HashingProvider hashing = new HashingProvider();
             db.Admins.Add(new Admin { Login = "admin", Username = "Администратор", PasswordHash = hashing.HashPassword("h2qq4W1") });
@@ -101,7 +103,12 @@ namespace MyPersonalBlog.Repositories
                 Id = 1,
                 PageSize = 5,
                 PostListPageSize = 3,
-                AdminEmail = "admin@mypersonalblog.com"
+                AdminEmail = "admin@mypersonalblog.com",
+                VkAppId = "5198654",
+                VkAppSecret = "J8vHQkxHhUlX2IeJDb2FZ",
+                GoogleAppId = "988813254802-37rg5bqo1memih5h0ece3s9f4ktr49sj.apps.googleusercontent.com",
+                GoogleAppSecret = "y1P_Rwjl3fRlVm4SzwlpTUa7",
+                OAuthRedirectUri = "http://localhost:55854/OAuth/SignIn"
             };
 
             db.Settings.Add(settings);
