@@ -161,11 +161,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\default_avatar.png" />
     <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\gplus_20.png" />
+    <Content Include="Content\images\gplus_32.png" />
     <Content Include="Content\images\github.png" />
     <Content Include="Content\images\header-background.jpg" />
     <Content Include="Content\images\linkedin.png" />
     <Content Include="Content\images\profile_foto.jpeg" />
+    <Content Include="Content\images\vk_20.png" />
+    <Content Include="Content\images\vk_32.png" />
     <Content Include="Content\site.css" />
     <Content Include="fav.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -186,7 +191,7 @@
     <Content Include="Areas\Admin\Views\Comments\_ConfirmDelete.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\Edit.cshtml" />
-    <Content Include="Views\Shared\_Error.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\Tags\List.cshtml" />
     <Content Include="Areas\Admin\Views\Tags\_EditTag.cshtml" />
     <Content Include="Areas\Admin\Views\Tags\_ConfirmDelete.cshtml" />
@@ -221,8 +226,14 @@
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
+    <Compile Include="Controllers\OAuthController.cs" />
+    <Compile Include="Infrastructure\Abstract\IOAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\DBSettingsProvider.cs" />
+    <Compile Include="Infrastructure\Concrete\GoogleOAuthProvider.cs" />
+    <Compile Include="Infrastructure\Concrete\VkOAuthProvider.cs" />
     <Compile Include="Infrastructure\Helpers\DisplayBoolHtmlHelper.cs" />
+    <Compile Include="Models\Like.cs" />
+    <Compile Include="Models\OAuthUser.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -244,11 +255,14 @@
     <Compile Include="Infrastructure\Helpers\SubstringTextHtmlHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Repositories\Abstract\ILikeRepository.cs" />
     <Compile Include="Repositories\Abstract\ISettingsRepository.cs" />
     <Compile Include="Repositories\Abstract\ITagRepository.cs" />
+    <Compile Include="Repositories\Concrete\LikeRepository.cs" />
     <Compile Include="Repositories\Concrete\SettingsRepository.cs" />
     <Compile Include="Repositories\Concrete\TagRepository.cs" />
     <Compile Include="ViewModels\ArchivePostsViewModel.cs" />
+    <Compile Include="ViewModels\CommentLikesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Repositories\Abstract\IAdminRepository.cs" />
@@ -283,6 +297,7 @@
     <Content Include="Views\Tags\List.cshtml" />
     <Content Include="Views\Shared\_Archive.cshtml" />
     <Content Include="Views\Shared\_Author.cshtml" />
+    <Content Include="Views\Posts\_Like.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

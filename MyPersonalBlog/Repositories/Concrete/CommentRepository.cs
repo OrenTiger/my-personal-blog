@@ -15,6 +15,7 @@ namespace MyPersonalBlog.Repositories
             get
             {
                 return _db.Comments
+                    .Include(c => c.Likes)
                     .Include(c => c.Post);
             }
         }

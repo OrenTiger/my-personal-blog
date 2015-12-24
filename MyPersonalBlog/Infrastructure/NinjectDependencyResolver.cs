@@ -36,6 +36,7 @@ namespace MyPersonalBlog.Infrastructure
             _kernel.Bind<ISettingsRepository>().To<SettingsRepository>();
             _kernel.Bind<ISettingsProvider>().To<DBSettingsProvider>().InSingletonScope();
             _kernel.Bind<IHashingProvider>().To<HashingProvider>();
+            _kernel.Bind<ILikeRepository>().To<LikeRepository>();
         }
     }
 }

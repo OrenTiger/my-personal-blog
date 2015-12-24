@@ -35,6 +35,18 @@ namespace MyPersonalBlog
             Exception ex = httpContext.Server.GetLastError();
             httpContext.Response.Clear();
 
+            if (new HttpRequestWrapper(Request).IsAjaxRequest())
+            {
+                Response.StatusCode = 500;
+                Response.ContentType = "application/json";
+                Response.Write(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(new
+                {
+                    errorMessage = ex.Message
+                }));
+
+                return;
+            }
+
             RequestContext requestContext = ((MvcHandler)httpContext.CurrentHandler).RequestContext;
             IController controller = new HomeController();
             var context = new ControllerContext(requestContext, (ControllerBase)controller);
@@ -54,7 +66,7 @@ namespace MyPersonalBlog
                 }
             }
 
-            viewResult.ViewName = "_Error";
+            viewResult.ViewName = "Error";
             viewResult.ViewData.Model = new HandleErrorInfo(ex, context.RouteData.GetRequiredString("controller"), context.RouteData.GetRequiredString("action"));
             viewResult.ExecuteResult(context);
             httpContext.ClearError();

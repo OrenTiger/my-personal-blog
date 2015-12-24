@@ -1,8 +1,10 @@
 ﻿@using MyPersonalBlog.Models
+@using MyPersonalBlog.ViewModels
 @model Post
 
 @{
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+    OAuthUser oAuthUser = Session["oAuthUser"] != null ? (OAuthUser)Session["oAuthUser"] : null;
 }
 
 <h2 class="text-primary">@Model.Title</h2>
@@ -27,12 +29,26 @@
 <div class="comments">
     @foreach (var comment in Model.Comments.Where(c => c.IsApproved))
     {
-        <span class="glyphicon glyphicon-user usericon"></span><span class="text-info username">@comment.Username</span><time class="text-muted small">@comment.CreateDate.ToString("dd/MM/yyyy HH:mm")</time>
+        if (comment.AvatarUrl != null)
+        {
+            <img src="@comment.AvatarUrl" class="avatar" />
+        }
+        else
+        {
+            <img src="~/Content/images/default_avatar.png" class="avatar" />
+        }
+        <span class="text-info username">@comment.Username</span><time class="text-muted small">@comment.CreateDate.ToString("dd/MM/yyyy HH:mm")</time>
         <p>@comment.Text</p>
+        if (oAuthUser != null)
+        {
+            <div id="like_@comment.Id" class="text-right" style="margin-top: -10px; padding-top: -10px;">
+                @Html.Partial("_Like", new CommentLikesViewModel { CommentId = comment.Id, LikesCount = comment.Likes.Count })
+            </div>
+        }
         <hr />
     }
 
-    @if (Model.Comments.Count == 0)
+    @if (Model.Comments.Where(p => p.IsApproved).Count() == 0)
     {
         <p class="text-muted">Пока никто не оставил комментарий</p>
     }

@@ -18,13 +18,14 @@ namespace MyPersonalBlog.Tests
         {
             // Организация - создание имитированного хранилища
             Mock<ICommentRepository> mock = new Mock<ICommentRepository>();
+            Mock<ILikeRepository> mockLike = new Mock<ILikeRepository>();
             var context = new Mock<HttpContextBase>();
             var request = new Mock<HttpRequestBase>();
             request.Setup(r => r.UrlReferrer).Returns(new Uri("http://test.com"));
             context.Setup(c => c.Request).Returns(request.Object);
 
             // Организация - создание контроллера
-            CommentController target = new CommentController(mock.Object);
+            CommentController target = new CommentController(mock.Object, mockLike.Object);
             target.ControllerContext = new ControllerContext(context.Object, new System.Web.Routing.RouteData(), target);
 
             // Организация - создание комментария
@@ -46,9 +47,10 @@ namespace MyPersonalBlog.Tests
         {
             // Организация - создание имитированного хранилища
             Mock<ICommentRepository> mock = new Mock<ICommentRepository>();
+            Mock<ILikeRepository> mockLike = new Mock<ILikeRepository>();
 
             // Организация - создание контроллера
-            CommentController target = new CommentController(mock.Object);
+            CommentController target = new CommentController(mock.Object, mockLike.Object);
 
             // Организация - создание комментария
             Comment comment = new Comment { Id = 1, CreateDate = DateTime.Now, Username = "Test User", Text = "Test Text", PostId = 1 };
