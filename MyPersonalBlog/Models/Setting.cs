@@ -22,19 +22,14 @@ namespace MyPersonalBlog.Models
         [Display(Name = "E-mail администратора")]
         public string AdminEmail { get; set; }
 
-        [Required]
         public string VkAppId { get; set; }
 
-        [Required]
         public string VkAppSecret { get; set; }
 
-        [Required]
         public string GoogleAppId { get; set; }
 
-        [Required]
         public string GoogleAppSecret { get; set; }
 
-        [Required]
         public string OAuthRedirectUri { get; set; }
     }
 }
