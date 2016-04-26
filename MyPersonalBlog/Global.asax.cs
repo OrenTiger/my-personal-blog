@@ -2,19 +2,16 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.Data.Entity;
 using System.Web.Optimization;
-using MyPersonalBlog.Repositories;
 using MyPersonalBlog.Controllers;
 using Elmah;
 
 namespace MyPersonalBlog
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
-            // Database.SetInitializer(new BlogDbInitializer());
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -191,6 +192,7 @@
     <Content Include="Areas\Admin\Views\Comments\_ConfirmDelete.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\Edit.cshtml" />
+    <Content Include="Scripts\google-analytics.js" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\Tags\List.cshtml" />
     <Content Include="Areas\Admin\Views\Tags\_EditTag.cshtml" />

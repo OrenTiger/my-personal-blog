@@ -15,10 +15,9 @@ namespace MyPersonalBlog
                 "~/Scripts/jquery.validate-vsdoc.js",
                 "~/Scripts/jquery.validate.js",
                 "~/Scripts/jquery.validate.unobtrusive.js",
-                "~/Scripts/validation.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrapscripts")
-                .Include("~/Scripts/bootstrap.js"));
+                "~/Scripts/validation.js",
+                "~/Scripts/google-analytics.js",
+                "~/Scripts/bootstrap.js"));
         }
     }
 }
